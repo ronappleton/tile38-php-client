@@ -1,0 +1,31 @@
+{
+    "name": "ronappleton/tile38-php-client",
+    "description": "A php client for the Tile38 Ultra Fast Geospatial Database",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ronappleton\\Tile38PhpClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ron Appleton <ron.appleton@gmail.com>"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.1",
+        "stematic/testing": "dev-develop",
+        "illuminate/support": "^9",
+        "ext-redis": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "8.1"
+        }
+    }
+}
