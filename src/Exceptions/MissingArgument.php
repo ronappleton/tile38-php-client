@@ -6,6 +6,12 @@ namespace Ronappleton\Tile38PhpClient\Exceptions;
 
 use Illuminate\Support\Str;
 use RuntimeException;
+use Throwable;
+
+use function is_array;
+use function count;
+use function implode;
+use function sprintf;
 
 class MissingArgument extends RuntimeException
 {
@@ -22,7 +28,7 @@ class MissingArgument extends RuntimeException
         parent::__construct(
             sprintf('%s [%s] required!', Str::plural('argument', $count), $argumentString),
             $code,
-            $previous
+            $previous,
         );
     }
 }

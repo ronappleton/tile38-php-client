@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Ronappleton\Tile38PhpClient\Exceptions;
 
+use RuntimeException;
 use Throwable;
 
-class TypeException extends \RuntimeException
+use function sprintf;
+
+class InvalidType extends RuntimeException
 {
     public function __construct(string $type, int $code = 0, ?Throwable $previous = null)
     {

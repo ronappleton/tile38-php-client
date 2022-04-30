@@ -25,6 +25,11 @@ class BaseCommand extends AbstractCommand
 {
     private string $commandNamespace = __NAMESPACE__;
 
+    public function execute(): Redis|array|string|bool
+    {
+        throw new BaseCommandDoesNotExecute();
+    }
+    
     /**
      * @param array<int, mixed> $arguments
      */
@@ -37,10 +42,5 @@ class BaseCommand extends AbstractCommand
         }
         
         return (new $classFqdn($this->client, $arguments, $this->getTimeout()))->execute();
-    }
-
-    public function execute(): Redis|array|string|bool
-    {
-        throw new BaseCommandDoesNotExecute();
     }
 }
