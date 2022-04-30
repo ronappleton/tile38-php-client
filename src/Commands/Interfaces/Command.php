@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ronappleton\Tile38PhpClient\Interfaces;
+namespace Ronappleton\Tile38PhpClient\Commands\Interfaces;
 
 use Redis;
 use Ronappleton\Tile38PhpClient\Clients\Tile38;

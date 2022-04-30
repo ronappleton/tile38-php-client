@@ -15,7 +15,7 @@ class Quit implements \Ronappleton\Tile38PhpClient\Interfaces\Command
 
     public function execute(): Redis|array|string
     {
-        return $this->client->rawCommand('QUIT', 1)
+        return $this->client->rawCommand('QUIT', '')
             ? 'connection closed'
             : 'could not close connection';
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ronappleton\Tile38PhpClient\Clients;
 
 use Redis;
+use Ronappleton\Tile38PhpClient\Commands\Builder;
 use Ronappleton\Tile38PhpClient\Commands\Command;
 use Ronappleton\Tile38PhpClient\Exceptions\PropertyDoesNotExist;
 
@@ -15,6 +16,8 @@ use function property_exists;
  */
 class Tile38 extends Redis
 {
+    private readonly Command $command;
+    
     /**
      * @phpcs:disable SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator.RequiredNumericLiteralSeparator
      */
@@ -27,6 +30,8 @@ class Tile38 extends Redis
         private readonly float $readTimeout = 0.0,
     ) {
         parent::__construct();
+        
+        $this->command = new Command($this);
     }
     
     public function initialiseConnection(null|string|array $credentials = null): void
@@ -46,31 +51,9 @@ class Tile38 extends Redis
         
         $this->auth($credentials);
     }
-    
-    public function __set(string $name, mixed $value): void
+
+    public function tileCommand(): Command
     {
-        if (!property_exists($this, $name)) {
-            throw new PropertyDoesNotExist($name, static::class);
-        }
-        
-        $this->$name = $value;
-    }
-    
-    public function __get(string $name): mixed
-    {
-        if (!property_exists($this, $name) && $name !== 'command') {
-            throw new PropertyDoesNotExist($name, static::class);
-        }
-        
-        if ($name === 'command') {
-            return new Command($this);
-        }
-        
-        return $this->$name;
-    }
-    
-    public function __isset(string $name): bool
-    {
-        return property_exists($this, $name);
+        return $this->command;
     }
 }

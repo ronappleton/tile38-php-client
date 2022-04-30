@@ -11,6 +11,12 @@ use function sprintf;
 use function ucfirst;
 use function class_exists;
 
+/**
+ * @method quit();
+ * @method raw(string $command);
+ * @method output(string $outputType);
+ * @method auth(string $password);
+ */
 class Command
 {
     private string $commandNamespace = __NAMESPACE__;

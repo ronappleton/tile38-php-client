@@ -9,21 +9,20 @@ use Ronappleton\Tile38PhpClient\Clients\Tile38;
 use Ronappleton\Tile38PhpClient\Exceptions\MissingArgument;
 use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
 
-class Output extends Command
+class Raw extends Command
 {
-    /**
-     * @param array<int, mixed> $arguments
-     */
     public function __construct(private readonly Tile38 $client, private readonly array $arguments = [])
     {
     }
-    
+
     public function execute(): Redis|array|string|bool
     {
         if (!isset($this->arguments[0])) {
-            throw new MissingArgument('resp|json');
+            throw new MissingArgument('the raw command should be sent');
         }
         
-        return $this->client->rawCommand('OUTPUT', $this->arguments[0]);
+        $otherArguments = array_slice($this->arguments, 1) ?? '';
+        
+        return $this->client->rawCommand($this->formatCommand($this->arguments[0]), implode(' ', $otherArguments));
     }
 }
