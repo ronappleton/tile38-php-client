@@ -14,5 +14,5 @@ interface Command
      */
     public function __construct(Tile38 $client, array $arguments = []);
 
-    public function execute(): Redis|array;
+    public function execute(): Redis|array|string|bool;
 }

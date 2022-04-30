@@ -6,9 +6,10 @@ namespace Ronappleton\Tile38PhpClient\Commands;
 
 use Redis;
 use Ronappleton\Tile38PhpClient\Clients\Tile38;
+use Ronappleton\Tile38PhpClient\Exceptions\MissingArgument;
 use Ronappleton\Tile38PhpClient\Interfaces\Command;
 
-class Server implements Command
+class Output implements Command
 {
     /**
      * @param array<int, mixed> $arguments
@@ -19,7 +20,9 @@ class Server implements Command
     
     public function execute(): Redis|array|string|bool
     {
-        $this->client->command->output('resp');
-        return $this->client->info('SERVER');
+        if (!isset($this->arguments[0])) {
+            throw new MissingArgument('resp|json');
+        }
+        return $this->client->rawCommand('OUTPUT', $this->arguments[0]);
     }
 }
