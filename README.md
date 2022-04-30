@@ -37,7 +37,7 @@ A php client for the Tile38 Ultra Fast Geospatial Database
 | JSET           | ❌    |
 | KEYS           | ❌    |
 | NEARBY         | ❌    |
-| OUTPUT         | ❌    |
+| OUTPUT         | ✅    |
 | PDEL           | ❌    |
 | PDELCHAN       | ❌    |
 | PDELHOOK       | ❌    |
@@ -54,7 +54,7 @@ A php client for the Tile38 Ultra Fast Geospatial Database
 | SCRIPT FLUSH   | ❌    |
 | SCRIPT LOAD    | ❌    |
 | SEARCH         | ❌    |
-| SERVER         | ❌    |
+| SERVER         | ✅    |
 | SET            | ❌    |
 | SETCHAN        | ❌    |
 | SETHOOK        | ❌    |
@@ -62,7 +62,7 @@ A php client for the Tile38 Ultra Fast Geospatial Database
 | SUBSCRIBE      | ❌    |
 | TEST           | ❌    |
 | TIMEOUT        | ✅    |
-| TTL            | ❌    |
+| TTL            | ✅    |
 | WITHIN         | ❌    |
 
 ⭐ Does not, or will not need implementing.
