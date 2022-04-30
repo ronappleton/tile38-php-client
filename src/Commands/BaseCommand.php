@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Ronappleton\Tile38PhpClient\Commands;
 
+use Redis;
 use Ronappleton\Tile38PhpClient\Clients\Tile38;
+use Ronappleton\Tile38PhpClient\Exceptions\BaseCommandDoesNotExecute;
 use Ronappleton\Tile38PhpClient\Exceptions\CommandDoesNotExist;
+use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command as AbstractCommand;
 
 use function sprintf;
 use function ucfirst;
@@ -13,17 +16,14 @@ use function class_exists;
 
 /**
  * @method quit();
- * @method raw(string $command);
+ * @method raw(string $command, mixed $arguments);
  * @method output(string $outputType);
  * @method auth(string $password);
+ * @method ttl(string $key, string $id);
  */
-class Command
+class BaseCommand extends AbstractCommand
 {
     private string $commandNamespace = __NAMESPACE__;
-    
-    public function __construct(private readonly Tile38 $client)
-    {
-    }
 
     /**
      * @param array<int, mixed> $arguments
@@ -36,6 +36,11 @@ class Command
             throw new CommandDoesNotExist($classFqdn);
         }
         
-        return (new $classFqdn($this->client, $arguments))->execute();
+        return (new $classFqdn($this->client, $arguments, $this->getTimeout()))->execute();
+    }
+
+    public function execute(): Redis|array|string|bool
+    {
+        throw new BaseCommandDoesNotExecute();
     }
 }

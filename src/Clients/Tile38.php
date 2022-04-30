@@ -6,7 +6,7 @@ namespace Ronappleton\Tile38PhpClient\Clients;
 
 use Redis;
 use Ronappleton\Tile38PhpClient\Commands\Builder;
-use Ronappleton\Tile38PhpClient\Commands\Command;
+use Ronappleton\Tile38PhpClient\Commands\BaseCommand;
 use Ronappleton\Tile38PhpClient\Exceptions\PropertyDoesNotExist;
 
 use function property_exists;
@@ -16,7 +16,7 @@ use function property_exists;
  */
 class Tile38 extends Redis
 {
-    private readonly Command $command;
+    private readonly BaseCommand $command;
     
     /**
      * @phpcs:disable SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator.RequiredNumericLiteralSeparator
@@ -31,7 +31,7 @@ class Tile38 extends Redis
     ) {
         parent::__construct();
         
-        $this->command = new Command($this);
+        $this->command = new BaseCommand($this);
     }
     
     public function initialiseConnection(null|string|array $credentials = null): void
@@ -52,7 +52,7 @@ class Tile38 extends Redis
         $this->auth($credentials);
     }
 
-    public function tileCommand(): Command
+    public function tileCommand(): BaseCommand
     {
         return $this->command;
     }

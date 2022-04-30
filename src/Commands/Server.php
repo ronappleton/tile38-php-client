@@ -10,17 +10,12 @@ use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
 
 class Server extends Command
 {
-    /**
-     * @param array<int, mixed> $arguments
-     */
-    public function __construct(private readonly Tile38 $client, private readonly array $arguments = [])
-    {
-    }
+    protected string $command = 'SERVER';
     
     public function execute(): Redis|array|string|bool
     {
-        $this->client->command->output('resp');
+        $this->sendCommand('OUTPUT', 'json');
         
-        return $this->client->info('SERVER');
+        return parent::execute();
     }
 }

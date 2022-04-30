@@ -5,21 +5,19 @@ declare(strict_types=1);
 namespace Ronappleton\Tile38PhpClient\Commands;
 
 use Redis;
-use Ronappleton\Tile38PhpClient\Clients\Tile38;
 use Ronappleton\Tile38PhpClient\Exceptions\MissingArgument;
+use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
 
-class Auth extends Abstracts\Command
+class Auth extends Command
 {
-    public function __construct(private readonly Tile38 $client, private readonly array $arguments = [])
-    {
-    }
-
+    protected string $command = 'AUTH';
+    
     public function execute(): Redis|array|string|bool
     {
         if (!isset($this->arguments[0])) {
             throw new MissingArgument('password');
         }
 
-        return $this->client->rawCommand($this->formatCommand('AUTH'), $this->arguments[0]);
+        return parent::execute();
     }
 }
