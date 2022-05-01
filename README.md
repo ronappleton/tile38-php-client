@@ -1,6 +1,9 @@
 # tile38-php-client
 A php client for the Tile38 Ultra Fast Geospatial Database
 
+[![License](http://poser.pugx.org/ronappleton/tile38-php-client/license)](https://packagist.org/packages/ronappleton/tile38-php-client)
+[![PHP Version Require](http://poser.pugx.org/ronappleton/tile38-php-client/require/php)](https://packagist.org/packages/ronappleton/tile38-php-client)
+
 ## Commands Covered - Updated as Implemented
 
 | Group       | Command Name    | Command   |
