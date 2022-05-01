@@ -24,11 +24,7 @@ abstract class Command implements CommandInterface
     /**
      * @param array<int, mixed> $arguments
      */
-    public function __construct(
-        protected readonly Redis $client,
-        protected array $arguments = [],
-        protected string $outputType = 'json',
-    ) {
+    public function __construct(protected readonly Redis $client, protected array $arguments = []) {
         if (count($this->arguments) < $this->argumentCountRequired) {
             throw new RequiredArgumentCount($this->argumentCountRequired);
         }
@@ -36,30 +32,7 @@ abstract class Command implements CommandInterface
     
     public function execute(): mixed
     {
-        $this->sendCommand('OUTPUT', $this->outputType);
-
-        if ($this->hasTimeout()) {
-            $this->command = sprintf('TIMEOUT %f %s', $this->getTimeout(), $this->command);
-        }
-        
-        return $this->sendCommand($this->command, $this->arguments);
-    }
-    
-    public function getTimeout(): float
-    {
-        return $this->timeout ?? 0.0;
-    }
-
-    public function setTimeout(float $timeout): Command
-    {
-        $this->timeout = $timeout;
-        
-        return $this;
-    }
-    
-    public function hasTimeout(): bool
-    {
-        return (bool) $this->getTimeout();
+        return $this->client->rawCommand($this->getCommand(), ... $this->formatArguments((array) $this->arguments));
     }
 
     /**
@@ -93,9 +66,15 @@ abstract class Command implements CommandInterface
         return sprintf(' %s', $argument->toString());
     }
     
-    protected function sendCommand(string $command, mixed $arguments): Redis|array|string|bool
+    public function output(string $output): Command
     {
-        dump($command, ... $this->formatArguments((array) $arguments));
-        return $this->client->rawCommand($command, ... $this->formatArguments((array) $arguments));
+        $this->client->rawCommand('OUTPUT', $output);
+        
+        return $this;
+    }
+    
+    protected function getCommand(): string
+    {
+        return $this->command;
     }
 }

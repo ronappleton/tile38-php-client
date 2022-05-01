@@ -11,11 +11,7 @@ interface Command
     /**
      * @param array<int, mixed> $arguments
      */
-    public function __construct(
-        Redis $client,
-        array $arguments = [],
-        string $outputType = 'json',
-    );
+    public function __construct(Redis $client, array $arguments = []);
 
     public function execute(): mixed;
 }

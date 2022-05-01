@@ -7,6 +7,8 @@ namespace Ronappleton\Tile38PhpClient\Clients;
 use Redis;
 use Ronappleton\Tile38PhpClient\Exceptions\CommandDoesNotExist;
 
+use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
+
 use function class_exists;
 
 /**
@@ -14,7 +16,7 @@ use function class_exists;
  * @method chan(string $channelSearchPattern);
  * Connection Group
  * @method auth(string $password);
- * @method output(string $outputType);
+ * @method output(string $output);
  * @method ping();
  * @method quit();
  *
@@ -61,12 +63,27 @@ class Tile38
      */
     public function __call(string $command, array $arguments = []): mixed
     {
+        if ($command === 'output') {
+            return $this->setOutput($arguments);
+        }
+        
         $classFqdn = sprintf('%s\\%s', $this->commandNamespace, ucfirst($command));
 
         if (!class_exists($classFqdn)) {
             throw new CommandDoesNotExist($classFqdn);
         }
 
-        return (new $classFqdn($this->client, $arguments))->execute();
+        return (new $classFqdn($this->client, $arguments));
+    }
+
+    private function setOutput(array $arguments): Tile38
+    {
+        if (!count($arguments)) {
+            throw new RequiredArgumentCount(1);
+        }
+        
+        $this->client->rawCommand('OUTPUT', $arguments[0]);
+
+        return $this;
     }
 }
