@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3ff94ba350027ed07975300b9cd67167",
+    "content-hash": "3ca075b6c87ed1fcb43f01a3a137b22c",
     "packages": [
         {
             "name": "composer/pcre",
@@ -77,72 +77,6 @@
                 }
             ],
             "time": "2022-02-26T13:14:22+00:00"
-        },
-        {
-            "name": "composer/xdebug-handler",
-            "version": "3.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "ced299686f41dce890debac69273b47ffe98a40c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/ced299686f41dce890debac69273b47ffe98a40c",
-                "reference": "ced299686f41dce890debac69273b47ffe98a40c",
-                "shasum": ""
-            },
-            "require": {
-                "composer/pcre": "^1 || ^2 || ^3",
-                "php": "^7.2.5 || ^8.0",
-                "psr/log": "^1 || ^2 || ^3"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^1.0",
-                "phpstan/phpstan-strict-rules": "^1.1",
-                "symfony/phpunit-bridge": "^6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Composer\\XdebugHandler\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "John Stevenson",
-                    "email": "john-stevenson@blueyonder.co.uk"
-                }
-            ],
-            "description": "Restarts a process without Xdebug.",
-            "keywords": [
-                "Xdebug",
-                "performance"
-            ],
-            "support": {
-                "irc": "irc://irc.freenode.org/composer",
-                "issues": "https://github.com/composer/xdebug-handler/issues",
-                "source": "https://github.com/composer/xdebug-handler/tree/3.0.3"
-            },
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/composer",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-02-25T21:32:43+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -1109,12 +1043,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "943ee172b97e5b65489c8f1853a84ebd3ba36770"
+                "reference": "7f57367c0ccaf5e75ee2059b899c3418928a0187"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/943ee172b97e5b65489c8f1853a84ebd3ba36770",
-                "reference": "943ee172b97e5b65489c8f1853a84ebd3ba36770",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/7f57367c0ccaf5e75ee2059b899c3418928a0187",
+                "reference": "7f57367c0ccaf5e75ee2059b899c3418928a0187",
                 "shasum": ""
             },
             "require": {
@@ -1170,7 +1104,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-04-28T13:03:32+00:00"
+            "time": "2022-04-29T08:46:19+00:00"
         },
         {
             "name": "laravel-zero/phar-updater",
@@ -1617,64 +1551,6 @@
             "time": "2022-03-30T14:23:50+00:00"
         },
         {
-            "name": "pdepend/pdepend",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pdepend/pdepend.git",
-                "reference": "af43d042005ae4ac5571262abd8611cfbe53e6cd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pdepend/pdepend/zipball/af43d042005ae4ac5571262abd8611cfbe53e6cd",
-                "reference": "af43d042005ae4ac5571262abd8611cfbe53e6cd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.7",
-                "symfony/config": "^2.3.0|^3|^4|^5|^6.0",
-                "symfony/dependency-injection": "^2.3.0|^3|^4|^5|^6.0",
-                "symfony/filesystem": "^2.3.0|^3|^4|^5|^6.0"
-            },
-            "require-dev": {
-                "easy-doc/easy-doc": "0.0.0|^1.2.3",
-                "gregwar/rst": "^1.0",
-                "phpunit/phpunit": "^4.8.36|^5.7.27",
-                "squizlabs/php_codesniffer": "^2.0.0"
-            },
-            "default-branch": true,
-            "bin": [
-                "src/bin/pdepend"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PDepend\\": "src/main/php/PDepend"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Official version of pdepend to be handled with Composer",
-            "support": {
-                "issues": "https://github.com/pdepend/pdepend/issues",
-                "source": "https://github.com/pdepend/pdepend/tree/master"
-            },
-            "funding": [
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/pdepend/pdepend",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-04-14T12:17:42+00:00"
-        },
-        {
             "name": "phar-io/manifest",
             "version": "dev-master",
             "source": {
@@ -2018,89 +1894,6 @@
             "time": "2022-04-13T18:43:19+00:00"
         },
         {
-            "name": "phpmd/phpmd",
-            "version": "2.12.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpmd/phpmd.git",
-                "reference": "c0b678ba71902f539c27c14332aa0ddcf14388ec"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/c0b678ba71902f539c27c14332aa0ddcf14388ec",
-                "reference": "c0b678ba71902f539c27c14332aa0ddcf14388ec",
-                "shasum": ""
-            },
-            "require": {
-                "composer/xdebug-handler": "^1.0 || ^2.0 || ^3.0",
-                "ext-xml": "*",
-                "pdepend/pdepend": "^2.10.3",
-                "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "easy-doc/easy-doc": "0.0.0 || ^1.3.2",
-                "ext-json": "*",
-                "ext-simplexml": "*",
-                "gregwar/rst": "^1.0",
-                "mikey179/vfsstream": "^1.6.8",
-                "phpunit/phpunit": "^4.8.36 || ^5.7.27",
-                "squizlabs/php_codesniffer": "^2.0"
-            },
-            "bin": [
-                "src/bin/phpmd"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "PHPMD\\": "src/main/php"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Manuel Pichler",
-                    "email": "github@manuel-pichler.de",
-                    "homepage": "https://github.com/manuelpichler",
-                    "role": "Project Founder"
-                },
-                {
-                    "name": "Marc Würth",
-                    "email": "ravage@bluewin.ch",
-                    "homepage": "https://github.com/ravage84",
-                    "role": "Project Maintainer"
-                },
-                {
-                    "name": "Other contributors",
-                    "homepage": "https://github.com/phpmd/phpmd/graphs/contributors",
-                    "role": "Contributors"
-                }
-            ],
-            "description": "PHPMD is a spin-off project of PHP Depend and aims to be a PHP equivalent of the well known Java tool PMD.",
-            "homepage": "https://phpmd.org/",
-            "keywords": [
-                "mess detection",
-                "mess detector",
-                "pdepend",
-                "phpmd",
-                "pmd"
-            ],
-            "support": {
-                "irc": "irc://irc.freenode.org/phpmd",
-                "issues": "https://github.com/phpmd/phpmd/issues",
-                "source": "https://github.com/phpmd/phpmd/tree/2.12.0"
-            },
-            "funding": [
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpmd/phpmd",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-03-24T13:33:01+00:00"
-        },
-        {
             "name": "phpmyadmin/sql-parser",
             "version": "5.5.0",
             "source": {
@@ -2292,12 +2085,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "5c23ff233fc19dfab6c7094b7a2dcd02c06ce8e6"
+                "reference": "76284bf8cc9a58477a70fd15170ba3cd9f35e0a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5c23ff233fc19dfab6c7094b7a2dcd02c06ce8e6",
-                "reference": "5c23ff233fc19dfab6c7094b7a2dcd02c06ce8e6",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/76284bf8cc9a58477a70fd15170ba3cd9f35e0a3",
+                "reference": "76284bf8cc9a58477a70fd15170ba3cd9f35e0a3",
                 "shasum": ""
             },
             "require": {
@@ -2344,7 +2137,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-28T13:49:24+00:00"
+            "time": "2022-04-29T16:37:42+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3715,6 +3508,67 @@
             "time": "2020-10-26T13:14:26+00:00"
         },
         {
+            "name": "sebastian/phpcpd",
+            "version": "6.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpcpd.git",
+                "reference": "f3683aa0db2e8e09287c2bb33a595b2873ea9176"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpcpd/zipball/f3683aa0db2e8e09287c2bb33a595b2873ea9176",
+                "reference": "f3683aa0db2e8e09287c2bb33a595b2873ea9176",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "php": ">=7.3",
+                "phpunit/php-file-iterator": "^3.0",
+                "phpunit/php-timer": "^5.0",
+                "sebastian/cli-parser": "^1.0",
+                "sebastian/version": "^3.0"
+            },
+            "bin": [
+                "phpcpd"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Copy/Paste Detector (CPD) for PHP code.",
+            "homepage": "https://github.com/sebastianbergmann/phpcpd",
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/phpcpd/issues",
+                "source": "https://github.com/sebastianbergmann/phpcpd/tree/6.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sebastianbergmann",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-12-07T05:39:23+00:00"
+        },
+        {
             "name": "sebastian/recursion-context",
             "version": "4.0.4",
             "source": {
@@ -4066,12 +3920,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stematic/testing.git",
-                "reference": "4c3214b87403b4ff6c002eef9fe258904455a739"
+                "reference": "948fb7d3221e16eca95e26505bf45e931b01e448"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stematic/testing/zipball/4c3214b87403b4ff6c002eef9fe258904455a739",
-                "reference": "4c3214b87403b4ff6c002eef9fe258904455a739",
+                "url": "https://api.github.com/repos/Stematic/testing/zipball/948fb7d3221e16eca95e26505bf45e931b01e448",
+                "reference": "948fb7d3221e16eca95e26505bf45e931b01e448",
                 "shasum": ""
             },
             "require": {
@@ -4079,8 +3933,8 @@
                 "nunomaduro/larastan": "^2.0",
                 "php": "^8.0.2",
                 "phploc/phploc": "^7.0",
-                "phpmd/phpmd": "^2.10",
                 "phpunit/phpunit": "^9.5",
+                "sebastian/phpcpd": "^6.0",
                 "slevomat/coding-standard": "^7.0.19",
                 "squizlabs/php_codesniffer": "^3.6",
                 "webimpress/coding-standard": "^1.2.4"
@@ -4115,84 +3969,7 @@
                 "issues": "https://github.com/Stematic/testing/issues",
                 "source": "https://github.com/Stematic/testing/tree/develop"
             },
-            "time": "2022-04-03T12:14:02+00:00"
-        },
-        {
-            "name": "symfony/config",
-            "version": "6.1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/config.git",
-                "reference": "614472728505943274631c0ac3cb47b392c58798"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/614472728505943274631c0ac3cb47b392c58798",
-                "reference": "614472728505943274631c0ac3cb47b392c58798",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.1",
-                "symfony/deprecation-contracts": "^2.1|^3",
-                "symfony/filesystem": "^5.4|^6.0",
-                "symfony/polyfill-ctype": "~1.8"
-            },
-            "conflict": {
-                "symfony/finder": "<5.4"
-            },
-            "require-dev": {
-                "symfony/event-dispatcher": "^5.4|^6.0",
-                "symfony/finder": "^5.4|^6.0",
-                "symfony/messenger": "^5.4|^6.0",
-                "symfony/service-contracts": "^1.1|^2|^3",
-                "symfony/yaml": "^5.4|^6.0"
-            },
-            "suggest": {
-                "symfony/yaml": "To use the yaml reference dumper"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Config\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/config/tree/6.1"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-04-25T21:28:30+00:00"
+            "time": "2022-05-01T07:55:10+00:00"
         },
         {
             "name": "symfony/console",
@@ -4200,12 +3977,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "2a9be9b22169c36f041dfd38997518414ab1a313"
+                "reference": "72f712f1700b64418e0330255df78227fbb2cf8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/2a9be9b22169c36f041dfd38997518414ab1a313",
-                "reference": "2a9be9b22169c36f041dfd38997518414ab1a313",
+                "url": "https://api.github.com/repos/symfony/console/zipball/72f712f1700b64418e0330255df78227fbb2cf8f",
+                "reference": "72f712f1700b64418e0330255df78227fbb2cf8f",
                 "shasum": ""
             },
             "require": {
@@ -4288,94 +4065,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-22T08:18:23+00:00"
-        },
-        {
-            "name": "symfony/dependency-injection",
-            "version": "6.1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "ca0887da1579a5a24bdcdd47b962c3898ec59a3d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/ca0887da1579a5a24bdcdd47b962c3898ec59a3d",
-                "reference": "ca0887da1579a5a24bdcdd47b962c3898ec59a3d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.1",
-                "psr/container": "^1.1|^2.0",
-                "symfony/deprecation-contracts": "^2.1|^3",
-                "symfony/service-contracts": "^1.1.6|^2.0|^3.0"
-            },
-            "conflict": {
-                "ext-psr": "<1.1|>=2",
-                "symfony/config": "<6.1",
-                "symfony/finder": "<5.4",
-                "symfony/proxy-manager-bridge": "<5.4",
-                "symfony/yaml": "<5.4"
-            },
-            "provide": {
-                "psr/container-implementation": "1.1|2.0",
-                "symfony/service-implementation": "1.1|2.0|3.0"
-            },
-            "require-dev": {
-                "symfony/config": "^6.1",
-                "symfony/expression-language": "^5.4|^6.0",
-                "symfony/yaml": "^5.4|^6.0"
-            },
-            "suggest": {
-                "symfony/config": "",
-                "symfony/expression-language": "For using expressions in service container configuration",
-                "symfony/finder": "For using double-star glob patterns or when GLOB_BRACE portability is required",
-                "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
-                "symfony/yaml": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\DependencyInjection\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Allows you to standardize and centralize the way objects are constructed in your application",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/dependency-injection/tree/6.1"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-04-26T13:23:01+00:00"
+            "time": "2022-04-30T17:15:50+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -4680,69 +4370,6 @@
             "time": "2022-02-25T11:15:52+00:00"
         },
         {
-            "name": "symfony/filesystem",
-            "version": "6.1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/filesystem.git",
-                "reference": "2938239e4d04321ecdf2118546c9dd2595cff24c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/2938239e4d04321ecdf2118546c9dd2595cff24c",
-                "reference": "2938239e4d04321ecdf2118546c9dd2595cff24c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.1",
-                "symfony/polyfill-ctype": "~1.8",
-                "symfony/polyfill-mbstring": "~1.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Filesystem\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Provides basic utilities for the filesystem",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/filesystem/tree/6.1"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-04-08T16:22:35+00:00"
-        },
-        {
             "name": "symfony/finder",
             "version": "6.1.x-dev",
             "source": {
@@ -4884,12 +4511,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "0710a6168a571ea231c844b29f6fae6578433ddf"
+                "reference": "8a1ac32430d0b162fa7b04338d072ffb3a23c4c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/0710a6168a571ea231c844b29f6fae6578433ddf",
-                "reference": "0710a6168a571ea231c844b29f6fae6578433ddf",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/8a1ac32430d0b162fa7b04338d072ffb3a23c4c5",
+                "reference": "8a1ac32430d0b162fa7b04338d072ffb3a23c4c5",
                 "shasum": ""
             },
             "require": {
@@ -4986,7 +4613,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-27T17:52:44+00:00"
+            "time": "2022-05-01T00:03:17+00:00"
         },
         {
             "name": "symfony/mime",
@@ -6385,7 +6012,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1",
+        "php": ">=8.1",
         "ext-redis": "*"
     },
     "platform-dev": [],
