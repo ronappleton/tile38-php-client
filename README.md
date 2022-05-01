@@ -14,7 +14,7 @@ A php client for the Tile38 Ultra Fast Geospatial Database
 | ---------   | ----------      | -------   |
 | Connection  | AUTH            | ✅         |
 | Connection  | OUTPUT          | ✅         |
-| Connection  | PING            | ❌         |
+| Connection  | PING            | ✅         |
 | Connection  | QUIT            | ✅         |
 | Connection  | TIMEOUT         | ✅         |
 | ---------   | ----------      | -------   |
@@ -33,7 +33,7 @@ A php client for the Tile38 Ultra Fast Geospatial Database
 | Keys        | RENAME          | ❌         |
 | Keys        | RENAMENX        | ❌         |
 | Keys        | SET             | ❌         |
-| Keys        | STATS           | ❌         |
+| Keys        | STATS           | ✅         |
 | Keys        | TTL             | ✅         |
 | ---------   | ----------      | -------   |
 | Scripting   | EVAL            | ❌         |
