@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ronappleton\Tile38PhpClient\Commands\Abstracts;
 
 use Redis;
-use Ronappleton\Tile38PhpClient\Clients\Tile38;
 use Ronappleton\Tile38PhpClient\Commands\Interfaces\Command as CommandInterface;
 use Ronappleton\Tile38PhpClient\Commands\Interfaces\Stringable;
 use Ronappleton\Tile38PhpClient\Exceptions\ObjectNotStringable;
@@ -26,9 +25,8 @@ abstract class Command implements CommandInterface
      * @param array<int, mixed> $arguments
      */
     public function __construct(
-        protected readonly Tile38 $client,
+        protected readonly Redis $client,
         protected array $arguments = [],
-        protected float $timeout = 0.0,
         protected string $outputType = 'json',
     ) {
         if (count($this->arguments) < $this->argumentCountRequired) {
@@ -36,9 +34,13 @@ abstract class Command implements CommandInterface
         }
     }
     
-    public function execute(): Redis|array|string|bool
+    public function execute(): mixed
     {
         $this->sendCommand('OUTPUT', $this->outputType);
+
+        if ($this->hasTimeout()) {
+            $this->command = sprintf('TIMEOUT %f %s', $this->getTimeout(), $this->command);
+        }
         
         return $this->sendCommand($this->command, $this->arguments);
     }
@@ -93,10 +95,7 @@ abstract class Command implements CommandInterface
     
     protected function sendCommand(string $command, mixed $arguments): Redis|array|string|bool
     {
-        if ($this->hasTimeout()) {
-            $this->client->rawCommand('TIMEOUT', $this->getTimeout());
-        }
-        
+        dump($command, ... $this->formatArguments((array) $arguments));
         return $this->client->rawCommand($command, ... $this->formatArguments((array) $arguments));
     }
 }

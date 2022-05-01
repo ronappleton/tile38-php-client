@@ -9,7 +9,7 @@ A php client for the Tile38 Ultra Fast Geospatial Database
 
 | Group       | Command Name    | Command   |
 |-------------|-----------------|-----------|
-| Channels    | CHANS           | ❌         |
+| Channels    | CHANS           | ✅         |
 | Channels    | DELCHAN         | ❌         |
 | Channels    | PDELCHAN        | ❌         |
 | Channels    | PSUBSCRIBE      | ❌         |
