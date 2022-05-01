@@ -14,7 +14,7 @@ class Quit extends Command
     public function execute(): Redis|array|string
     {
         return parent::execute()
-            ? 'connection closed'
-            : 'could not close connection';
+            ? '{"status":"ok", "message": "connection closed"}'
+            : '{"status":false, "err": "could not close connection"}';
     }
 }

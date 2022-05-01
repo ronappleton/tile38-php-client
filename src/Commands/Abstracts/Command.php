@@ -10,14 +10,17 @@ use Ronappleton\Tile38PhpClient\Commands\Interfaces\Command as CommandInterface;
 use Ronappleton\Tile38PhpClient\Commands\Interfaces\Stringable;
 use Ronappleton\Tile38PhpClient\Exceptions\ObjectNotStringable;
 use Ronappleton\Tile38PhpClient\Exceptions\InvalidType;
+use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
 
 use function gettype;
-use function get_class;
 use function sprintf;
+use function count;
 
 abstract class Command implements CommandInterface
 {
     protected string $command = '';
+    
+    protected int $argumentCountRequired = 0;
 
     /**
      * @param array<int, mixed> $arguments
@@ -26,11 +29,17 @@ abstract class Command implements CommandInterface
         protected readonly Tile38 $client,
         protected array $arguments = [],
         protected float $timeout = 0.0,
+        protected string $outputType = 'json',
     ) {
+        if (count($this->arguments) < $this->argumentCountRequired) {
+            throw new RequiredArgumentCount($this->argumentCountRequired);
+        }
     }
     
     public function execute(): Redis|array|string|bool
     {
+        $this->sendCommand('OUTPUT', $this->outputType);
+        
         return $this->sendCommand($this->command, $this->arguments);
     }
     
@@ -87,7 +96,7 @@ abstract class Command implements CommandInterface
         if ($this->hasTimeout()) {
             $this->client->rawCommand('TIMEOUT', $this->getTimeout());
         }
-
+        
         return $this->client->rawCommand($command, ... $this->formatArguments((array) $arguments));
     }
 }

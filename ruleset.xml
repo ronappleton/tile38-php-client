@@ -83,6 +83,13 @@
         <exclude name="SlevomatCodingStandard.Classes.ForbiddenPublicProperty.ForbiddenPublicProperty" />
         <exclude name="SlevomatCodingStandard.Namespaces.UnusedUses.UnusedUse" />
         <exclude name="SlevomatCodingStandard.ControlStructures.DisallowNullSafeObjectOperator" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireNullSafeObjectOperator" />
+        <exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator" />
+        <exclude name="SlevomatCodingStandard.Functions.UnusedParameter" />
+        <exclude name="SlevomatCodingStandard.Exceptions.DisallowNonCapturingCatch.DisallowedNonCapturingCatch" />
+        <exclude name="SlevomatCodingStandard.Exceptions.RequireNonCapturingCatch.NonCapturingCatchRequired" />
+        <exclude name="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature" />
+        <exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators" />
     </rule>
 
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
@@ -122,12 +129,6 @@
     </rule>
 
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly" />
-
-    <rule ref="SlevomatCodingStandard.Exceptions.RequireNonCapturingCatch">
-        <properties>
-            <property name="enable" value="true" />
-        </properties>
-    </rule>
 
     <!-- Allow "declare(strict_types=1)" with a single line after the opening php tag -->
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
@@ -212,13 +213,9 @@
 
     <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators" />
 
-    <rule ref="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators" />
-
     <rule ref="SlevomatCodingStandard.Operators.RequireCombinedAssignmentOperator" />
 
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure" />
-
-    <rule ref="SlevomatCodingStandard.Functions.UnusedParameter" />
 
     <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue" />
 
@@ -387,8 +384,6 @@
     <rule ref="SlevomatCodingStandard.ControlStructures.NewWithParentheses" />
 
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator" />
-
-    <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullSafeObjectOperator" />
 
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireSingleLineCondition">
         <properties>

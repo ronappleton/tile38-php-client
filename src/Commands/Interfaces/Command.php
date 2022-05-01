@@ -12,7 +12,12 @@ interface Command
     /**
      * @param array<int, mixed> $arguments
      */
-    public function __construct(Tile38 $client, array $arguments = [], float $timeout = 0.0);
+    public function __construct(
+        Tile38 $client,
+        array $arguments = [],
+        float $timeout = 0.0,
+        string $outputType = 'json',
+    );
 
     public function execute(): Redis|array|string|bool;
 }

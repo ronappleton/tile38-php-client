@@ -6,7 +6,7 @@ require 'vendor/autoload.php';
 
 use Ronappleton\Tile38PhpClient\Clients\Tile38;
 
-$client = new Tile38(host: '127.0.0.1', port: 9851);
+$client = new Tile38('127.0.0.1', 9851);
 $client->initialiseConnection();
 
 $response = $client->tileCommand()->stats('fleet');

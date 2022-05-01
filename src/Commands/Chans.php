@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Ronappleton\Tile38PhpClient\Commands;
 
-use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
+use Redis;
 
-class Auth extends Command
+class Chans extends Abstracts\Command
 {
-    protected string $command = 'AUTH';
+    protected string $command = 'CHANS';
     
     protected int $argumentCountRequired = 1;
 }
