@@ -3,6 +3,7 @@ A php client for the Tile38 Ultra Fast Geospatial Database
 
 [![License](http://poser.pugx.org/ronappleton/tile38-php-client/license)](https://packagist.org/packages/ronappleton/tile38-php-client)
 [![PHP Version Require](http://poser.pugx.org/ronappleton/tile38-php-client/require/php)](https://packagist.org/packages/ronappleton/tile38-php-client)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/71b6bf0f18b743fc97e6feadc42e7a1a)](https://www.codacy.com/gh/ronappleton/tile38-php-client/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ronappleton/tile38-php-client&amp;utm_campaign=Badge_Grade)
 
 ## Commands Covered - Updated as Implemented
 
