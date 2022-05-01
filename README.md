@@ -3,66 +3,66 @@ A php client for the Tile38 Ultra Fast Geospatial Database
 
 ## Commands Covered - Updated as Implemented
 
-| Command Name   | Command |
-|----------------|------|
-| AOF            | ❌    |
-| AOFMD5         | ❌    |
-| AOFSHRINK      | ❌    |
-| AUTH           | ✅    |
-| BOUNDS         | ❌    |
-| CHANS          | ❌    |
-| CONFIG GET     | ❌    |
-| CONFIG REWRITE | ❌    |
-| CONFIG SET     | ❌    |
-| DEL            | ❌    |
-| DELCHAN        | ❌    |
-| DELHOOK        | ❌    |
-| DROP           | ❌    |
-| EVAL           | ❌    |
-| EVALNA         | ❌    |
-| EVALNASHA      | ❌    |
-| EVALRO         | ❌    |
-| EVALROSHA      | ❌    |
-| EVALSHA        | ❌    |
-| EXPIRE         | ❌    |
-| FLUSHDB        | ❌    |
-| FOLLOW         | ❌    |
-| FSET           | ❌    |
-| GC             | ❌    |
-| GET            | ❌    |
-| HOOKS          | ❌    |
-| INTERSECTS     | ❌    |
-| JDEL           | ❌    |
-| JGET           | ❌    |
-| JSET           | ❌    |
-| KEYS           | ❌    |
-| NEARBY         | ❌    |
-| OUTPUT         | ✅    |
-| PDEL           | ❌    |
-| PDELCHAN       | ❌    |
-| PDELHOOK       | ❌    |
-| PERSIST        | ❌    |
-| PING           | ❌    |
-| PSUBSCRIBE     | ❌    |
-| QUIT           | ✅    |
-| RAW            | ✅    |
-| READONLY       | ❌    |
-| RENAME         | ❌    |
-| RENAMENX       | ❌    |
-| SCAN           | ❌    |
-| SCRIPT EXISTS  | ❌    |
-| SCRIPT FLUSH   | ❌    |
-| SCRIPT LOAD    | ❌    |
-| SEARCH         | ❌    |
-| SERVER         | ✅    |
-| SET            | ❌    |
-| SETCHAN        | ❌    |
-| SETHOOK        | ❌    |
-| STATS          | ❌    |
-| SUBSCRIBE      | ❌    |
-| TEST           | ❌    |
-| TIMEOUT        | ✅    |
-| TTL            | ✅    |
-| WITHIN         | ❌    |
-
-⭐ Does not, or will not need implementing.
+| Group       | Command Name    | Command   |
+|-------------|-----------------|-----------|
+| Channels    | CHANS           | ❌         |
+| Channels    | DELCHAN         | ❌         |
+| Channels    | PDELCHAN        | ❌         |
+| Channels    | PSUBSCRIBE      | ❌         |
+| Channels    | SETCHAN         | ❌         |
+| Channels    | SUBSCRIBE       | ❌         |
+| ---------   | ----------      | -------   |
+| Connection  | AUTH            | ✅         |
+| Connection  | OUTPUT          | ✅         |
+| Connection  | PING            | ❌         |
+| Connection  | QUIT            | ✅         |
+| Connection  | TIMEOUT         | ✅         |
+| ---------   | ----------      | -------   |
+| Keys        | BOUNDS          | ❌         |
+| Keys        | DEL             | ❌         |
+| Keys        | DROP            | ❌         |
+| Keys        | EXPIRE          | ❌         |
+| Keys        | FSET            | ❌         |
+| Keys        | GET             | ❌         |
+| Keys        | JDEL            | ❌         |
+| Keys        | JGET            | ❌         |
+| Keys        | JSET            | ❌         |
+| Keys        | KEYS            | ❌         |
+| Keys        | PDEL            | ❌         |
+| Keys        | PERSIST         | ❌         |
+| Keys        | RENAME          | ❌         |
+| Keys        | RENAMENX        | ❌         |
+| Keys        | SET             | ❌         |
+| Keys        | STATS           | ❌         |
+| Keys        | TTL             | ✅         |
+| ---------   | ----------      | -------   |
+| Scripting   | EVAL            | ❌         |
+| Scripting   | EVALNA          | ❌         |
+| Scripting   | EVALNASHA       | ❌         |
+| Scripting   | EVALRO          | ❌         |
+| Scripting   | EVALROSHA       | ❌         |
+| Scripting   | EVALSHA         | ❌         |
+| Scripting   | SCRIPT EXISTS   | ❌         |
+| Scripting   | SCRIPT FLUSH    | ❌         |
+| Scripting   | SCRIPT LOAD     | ❌         |
+| ---------   | ----------      | -------   |
+| Search      | INTERSECTS      | ❌         |
+| Search      | NEARBY          | ❌         |
+| Search      | SCAN            | ❌         |
+| Search      | SEARCH          | ❌         |
+| Search      | WITHIN          | ❌         |
+| Server      | CONFIG GET      | ❌         |
+| Server      | CONFIG REWRITE  | ❌         |
+| Server      | CONFIG SET      | ❌         |
+| Server      | FLUSHDB         | ❌         |
+| Server      | GC              | ❌         |
+| Server      | READONLY        | ❌         |
+| Server      | SERVER          | ✅         |
+| ---------   | ----------      | -------   |
+| Webhooks    | DELHOOK         | ❌         |
+| Webhooks    | HOOKS           | ❌         |
+| Webhooks    | PDELHOOK        | ❌         |
+| Webhooks    | SETHOOK         | ❌         |
+| ---------   | ----------      | -------   |
+| Utility     | TEST            | ❌         |
+| Utility     | RAW             | ✅         |
