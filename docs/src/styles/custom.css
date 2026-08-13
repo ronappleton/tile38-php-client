@@ -1,0 +1,347 @@
+@import '@fontsource-variable/ibm-plex-sans/index.css';
+@import '@fontsource-variable/familjen-grotesk/index.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+
+/*
+ * DESIGN CONTRACT — tile38-php-client documentation (impeccable / Read mode)
+ * THESIS: A field guide for a geospatial client — structure for comprehension first,
+ *   then a reading experience that feels like a well-drawn map. Refuses the generic
+ *   "icon card" docs template.
+ * OWN-WORLD: Deep teal-green ink on warm map ground, amber survey markers, Familjen
+ *   Grotesk display + IBM Plex Sans body + JetBrains Mono code, topographic contours
+ *   and tile grids as pure geometry.
+ * STORY: A PHP developer lands, understands the one-line pitch, sees the client
+ *   working in a snippet, and walks straight from Quick Start into the tutorial that
+ *   matches their use case.
+ * FIRST VIEWPORT: A contour-and-tile hero: display headline, one-line subhead, two
+ *   actions, and a working `nearby` snippet in a terminal-flavored panel.
+ * FORM: Starlight, Read mode, pinned "map/geo dev-tool" direction.
+ * FINISH: unreviewed and undocumented is unfinished; this build ends with the finish
+ *   review, the verdict, and DESIGN.md.
+ */
+
+:root {
+  /* Type */
+  --map-font-display: 'Familjen Grotesk Variable', 'Segoe UI', system-ui, sans-serif;
+  --sl-font: 'IBM Plex Sans Variable', system-ui, sans-serif;
+  --sl-font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
+
+  /* Content measure */
+  --sl-content-width: 54rem;
+  --sl-text-h1: clamp(2rem, 4vw, 2.75rem);
+  --sl-text-h2: 1.625rem;
+  --sl-text-h3: 1.3125rem;
+  --sl-text-h4: 1.125rem;
+
+  /* Shared custom tokens */
+  --map-accent-amber: #b45309;
+  --map-accent-amber-soft: #fde68a;
+  --map-radius: 14px;
+  --map-code-radius: 10px;
+}
+
+/* ============================= DARK ============================= */
+:root[data-theme='dark'] {
+  --sl-color-white: #e8efec;
+  --sl-color-gray-1: #e8efec;
+  --sl-color-gray-2: #d6e0dc;
+  --sl-color-gray-3: #a8b6b1;
+  --sl-color-gray-4: #7d8d88;
+  --sl-color-gray-5: #53635f;
+  --sl-color-gray-6: #1d2b29;
+  --sl-color-black: #0d1615;
+
+  --sl-color-accent-low: #0f3d38;
+  --sl-color-accent: #2dd4bf;
+  --sl-color-accent-high: #99f6e4;
+
+  --sl-color-text: var(--sl-color-gray-2);
+  --sl-color-text-accent: var(--sl-color-accent-high);
+  --sl-color-text-invert: #06201d;
+  --sl-color-bg: var(--sl-color-black);
+  --sl-color-bg-nav: #111c1a;
+  --sl-color-bg-sidebar: var(--sl-color-black);
+  --sl-color-bg-inline-code: #182422;
+  --sl-color-bg-accent: var(--sl-color-accent);
+  --sl-color-hairline-light: #2b3b37;
+  --sl-color-hairline: #1d2b29;
+  --sl-color-hairline-shade: #0d1615;
+
+  --map-accent-amber: #fbbf24;
+  --map-accent-amber-soft: #78350f;
+
+  --sl-color-banner-text: var(--sl-color-gray-1);
+  --sl-color-banner-bg: var(--sl-color-bg-nav);
+  --sl-color-banner-link: var(--sl-color-accent-high);
+}
+
+/* ============================= LIGHT ============================= */
+:root[data-theme='light'] {
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #1c2724;
+  --sl-color-gray-2: #2f3b37;
+  --sl-color-gray-3: #4d5a56;
+  --sl-color-gray-4: #6f7d78;
+  --sl-color-gray-5: #98a49f;
+  --sl-color-gray-6: #d6ddd7;
+  --sl-color-gray-7: #eef1ec;
+  --sl-color-black: #f5f7f2;
+
+  --sl-color-accent-low: #ccfbf1;
+  --sl-color-accent: #0f766e;
+  --sl-color-accent-high: #115e59;
+
+  --sl-color-text: var(--sl-color-gray-1);
+  --sl-color-text-accent: #0f766e;
+  --sl-color-text-invert: #ffffff;
+  --sl-color-bg: var(--sl-color-black);
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #f5f7f2;
+  --sl-color-bg-inline-code: #e9ede7;
+  --sl-color-bg-accent: var(--sl-color-accent);
+  --sl-color-hairline-light: #e0e6df;
+  --sl-color-hairline: #cfd7d0;
+  --sl-color-hairline-shade: #eef1ec;
+
+  --map-accent-amber: #b45309;
+  --map-accent-amber-soft: #fde68a;
+
+  --sl-color-banner-text: var(--sl-color-gray-1);
+  --sl-color-banner-bg: var(--sl-color-bg-nav);
+  --sl-color-banner-link: var(--sl-color-accent-high);
+}
+
+/* ============================ TYPE ============================ */
+body {
+  letter-spacing: 0.01em;
+}
+
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4,
+.sl-markdown-content h5 {
+  font-family: var(--map-font-display);
+  letter-spacing: -0.02em;
+  font-weight: 560;
+  line-height: 1.12;
+}
+
+.sl-markdown-content h1 {
+  font-weight: 590;
+}
+
+.sl-markdown-content h2 {
+  margin-top: 2.5em;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.sl-markdown-content h3 {
+  margin-top: 2em;
+}
+
+/* Inline code */
+.sl-markdown-content :not(pre) > code {
+  font-family: var(--sl-font-mono);
+  font-size: 0.86em;
+  background: var(--sl-color-bg-inline-code);
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+}
+
+/* Code blocks */
+.sl-markdown-content pre {
+  border-radius: var(--map-code-radius);
+  border: 1px solid var(--sl-color-hairline);
+  box-shadow: var(--sl-shadow-sm);
+  font-size: 0.875rem;
+}
+
+.sl-markdown-content pre code {
+  font-family: var(--sl-font-mono);
+}
+
+/* Blockquotes — used as "tip"/callout tone */
+.sl-markdown-content blockquote {
+  border-left: 3px solid var(--map-accent-amber);
+  background: color-mix(in srgb, var(--map-accent-amber-soft) 18%, transparent);
+  border-radius: 0 var(--map-radius) var(--map-radius) 0;
+  padding: 0.75rem 1.25rem;
+  color: var(--sl-color-text);
+}
+
+/* Tables */
+.sl-markdown-content table {
+  font-size: 0.9rem;
+}
+
+.sl-markdown-content th {
+  font-family: var(--map-font-display);
+  font-weight: 560;
+  letter-spacing: 0.01em;
+}
+
+/* Nav brand */
+.site-title {
+  font-family: var(--map-font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Sidebar headings */
+.sidebar-pane h2 {
+  font-family: var(--map-font-display);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sl-color-gray-4);
+}
+
+/* ============================ HERO ============================ */
+.map-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  padding: 3rem 0 3.5rem;
+  position: relative;
+}
+
+.map-hero-copy h1 {
+  font-family: var(--map-font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.1rem;
+}
+
+.map-hero-copy h1 .accent {
+  color: var(--sl-color-text-accent);
+}
+
+.map-hero-sub {
+  font-size: 1.15rem;
+  color: var(--sl-color-gray-4);
+  max-width: 46ch;
+  margin: 0 0 1.75rem;
+  line-height: 1.55;
+}
+
+.map-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.map-hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.map-hero-actions a:hover {
+  transform: translateY(-1px);
+}
+
+.map-hero-actions .primary {
+  background: var(--sl-color-bg-accent);
+  color: var(--sl-color-text-invert);
+  box-shadow: var(--sl-shadow-md);
+}
+
+.map-hero-actions .secondary {
+  background: var(--sl-color-bg-nav);
+  color: var(--sl-color-text);
+  border: 1px solid var(--sl-color-hairline);
+}
+
+.map-hero-code {
+  position: relative;
+}
+
+.map-hero-code .window {
+  background: #0b1212;
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: var(--map-radius);
+  box-shadow: var(--sl-shadow-lg);
+  overflow: hidden;
+  font-family: var(--sl-font-mono);
+}
+
+.map-hero-code .window-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.9rem;
+  background: #13201e;
+  border-bottom: 1px solid #223330;
+}
+
+.map-hero-code .dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+}
+
+.map-hero-code .dot:nth-child(1) { background: #f87171; }
+.map-hero-code .dot:nth-child(2) { background: #fbbf24; }
+.map-hero-code .dot:nth-child(3) { background: #34d399; }
+
+.map-hero-code .window-bar .title {
+  margin-left: 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #7d8d88;
+}
+
+.map-hero-code pre {
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.map-hero-code pre code {
+  font-family: var(--sl-font-mono);
+  background: transparent;
+}
+
+/* Topographic contour backdrop */
+.map-contours {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+}
+
+[data-theme='dark'] .map-contours {
+  opacity: 0.2;
+}
+
+.map-hero-copy,
+.map-hero-code {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 54rem) {
+  .map-hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-top: 2.25rem;
+  }
+}
+
+/* ============================ FOOTER ============================ */
+.site-footer {
+  border-top: 1px solid var(--sl-color-hairline);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+}

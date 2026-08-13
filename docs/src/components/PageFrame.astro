@@ -1,0 +1,26 @@
+---
+import Default from '@astrojs/starlight/components/PageFrame.astro';
+---
+
+<!--
+DESIGN CONTRACT — tile38-php-client documentation (impeccable / Read mode)
+THESIS: A field guide for a geospatial client — structure for comprehension first,
+  then a reading experience that feels like a well-drawn map. Refuses the generic
+  "icon card" docs template.
+OWN-WORLD: Deep teal-green ink on warm map ground, amber survey markers, Familjen
+  Grotesk display + IBM Plex Sans body + JetBrains Mono code, topographic contours
+  and tile grids as pure geometry.
+STORY: A PHP developer lands, understands the one-line pitch, sees the client working
+  in a snippet, and walks straight from Quick Start into the tutorial that matches
+  their use case.
+FIRST VIEWPORT: A contour-and-tile hero: display headline, one-line subhead, two
+  actions, and a working `nearby` snippet in a terminal-flavored panel.
+FORM: Starlight, Read mode, pinned "map/geo dev-tool" direction.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish
+  review, the verdict, and DESIGN.md.
+-->
+<Default>
+  <slot name="header" slot="header" />
+  <slot name="sidebar" slot="sidebar" />
+  <slot />
+</Default>

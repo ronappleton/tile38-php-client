@@ -195,3 +195,26 @@ composer test          # run the unit test suite (no server required)
 composer cs            # check code style
 composer cs:fix        # automatically fix code style
 ```
+
+## Documentation Site
+
+A full documentation site (Starlight/Astro) lives in `docs/` and ships as its own
+Docker image. It covers installation, the fluent API, every command, version
+compatibility, guides, and real-world tutorials.
+
+```bash
+# Serve the built site on http://localhost:3000
+docker compose up --build docs
+
+# Or run the docs dev server with hot reload on http://localhost:4321
+docker compose up docs-dev
+```
+
+To build the docs locally:
+
+```bash
+cd docs
+npm install
+npm run generate:commands   # regenerate the command reference from CommandRegistry
+npm run build               # outputs to docs/dist
+```

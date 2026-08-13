@@ -32,3 +32,21 @@ services:
       - tile38-133
       - tile38-138
     command: ["sh", "-c", "composer install --no-interaction --prefer-dist && bash docker/scripts/run-integration.sh"]
+
+  docs:
+    build:
+      context: .
+      dockerfile: docker/docs/Dockerfile
+    ports:
+      - "3000:80"
+
+  docs-dev:
+    image: node:22-alpine
+    working_dir: /app/docs
+    volumes:
+      - .:/app
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=development
+    command: ["sh", "-c", "npm install && npm run dev -- --host 0.0.0.0 --port 4321"]
