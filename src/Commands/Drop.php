@@ -6,7 +6,9 @@ namespace Ronappleton\Tile38PhpClient\Commands;
 
 use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
 
-class Ping extends Command
+class Drop extends Command
 {
-    protected string $command = 'PING';
+    protected string $command = 'DROP';
+
+    protected int $argumentCountRequired = 1;
 }

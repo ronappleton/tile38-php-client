@@ -76,6 +76,7 @@
         <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation" />
         <exclude name="SlevomatCodingStandard.Classes.DisallowConstructorPropertyPromotion" />
         <exclude name="SlevomatCodingStandard.Commenting.RequireOneLineDocComment" />
+        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment" />
         <exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint" />
         <exclude name="SlevomatCodingStandard.PHP.RequireExplicitAssertion" />
         <exclude name="SlevomatCodingStandard.Classes.RequireAbstractOrFinal.ClassNeitherAbstractNorFinal" />
@@ -90,6 +91,18 @@
         <exclude name="SlevomatCodingStandard.Exceptions.RequireNonCapturingCatch.NonCapturingCatchRequired" />
         <exclude name="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature" />
         <exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators" />
+        <exclude name="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat" />
+        <exclude name="SlevomatCodingStandard.Files.FileLength.FileTooLong" />
+    </rule>
+
+    <!-- test expectations mirror the type-first output of the library, not alphabetical order -->
+    <rule ref="SlevomatCodingStandard.Arrays.AlphabeticallySortedByKeys">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+
+    <!-- test classes may be long due to comprehensive coverage -->
+    <rule ref="SlevomatCodingStandard.Classes.ClassLength">
+        <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
 
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
@@ -103,7 +116,7 @@
     <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
         <properties>
             <property name="enableNativeTypeHint" value="true" />
-            <property name="enabledMixedTypeHint" value="true" />
+            <property name="enableMixedTypeHint" value="true" />
             <property name="enableUnionTypeHint" value="true" />
         </properties>
     </rule>
@@ -120,10 +133,10 @@
     <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint" />
 
     <!-- The format of union types, null must appear first -->
-    <rule ref="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat">
+    <rule ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat">
         <properties>
             <property name="enable" value="true" />
-            <property name="withSpaces" value="true" />
+            <property name="withSpacesAroundOperators" value="true" />
             <property name="nullPosition" value="first" />
         </properties>
     </rule>
@@ -149,6 +162,7 @@
 
                 <element value="public constants" />
                 <element value="constants" />
+                <element value="enum cases" />
 
                 <element value="static properties" />
                 <element value="public properties, protected properties, private properties" />
@@ -419,7 +433,7 @@
             <property name="spacesCountAfterArrow" value="1" />
 
             <!-- if you need a multiline, then just use a regular closure -->
-            <property name="allowMultiline" value="false" />
+            <property name="allowMultiLine" value="false" />
         </properties>
     </rule>
 
@@ -514,8 +528,6 @@
     <rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue" />
 
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHintSpacing" />
-
-    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHintSpacing" />
 
     <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse" />
 

@@ -6,7 +6,9 @@ namespace Ronappleton\Tile38PhpClient\Commands;
 
 use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
 
-class Ping extends Command
+class Fset extends Command
 {
-    protected string $command = 'PING';
+    protected string $command = 'FSET';
+
+    protected int $argumentCountRequired = 4;
 }

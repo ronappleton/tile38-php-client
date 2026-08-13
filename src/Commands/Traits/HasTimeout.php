@@ -4,25 +4,26 @@ declare(strict_types=1);
 
 namespace Ronappleton\Tile38PhpClient\Commands\Traits;
 
-use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
-
 trait HasTimeout
 {
     protected float $timeout = 0.0;
-    
-    public function timeout(float $timeout): Command
+
+    public function timeout(float $timeout): static
     {
         $this->timeout = $timeout;
-        
+
         return $this;
     }
-    
-    protected function getCommand(): string
+
+    public function execute(): mixed
     {
-        if ($this->timeout) {
-            return sprintf('TIMEOUT %f %s', $this->timeout, $this->command);
+        $command = $this->getCommand();
+        $arguments = $this->buildArguments();
+
+        if ($this->timeout > 0.0) {
+            return $this->client->rawCommand('TIMEOUT', (string) $this->timeout, $command, ... $arguments);
         }
-        
-        return $this->command;
+
+        return $this->client->rawCommand($command, ... $arguments);
     }
 }

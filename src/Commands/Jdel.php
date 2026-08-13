@@ -6,7 +6,9 @@ namespace Ronappleton\Tile38PhpClient\Commands;
 
 use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
 
-class Ping extends Command
+class Jdel extends Command
 {
-    protected string $command = 'PING';
+    protected string $command = 'JDEL';
+
+    protected int $argumentCountRequired = 3;
 }

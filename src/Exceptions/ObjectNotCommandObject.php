@@ -9,15 +9,15 @@ use Throwable;
 
 use function sprintf;
 
-class ObjectNotStringable extends RuntimeException
+class ObjectNotCommandObject extends RuntimeException
 {
     public function __construct(string $class, int $code = 0, ?Throwable $previous = null)
     {
         $message = sprintf(
-            'Class [%s] does not implement Ronappleton\Tile38PhpClient\Commands\Interfaces\Stringable',
+            'Class [%s] does not implement Ronappleton\Tile38PhpClient\Commands\Interfaces\CommandObject',
             $class,
         );
-        
+
         parent::__construct($message, $code, $previous);
     }
 }

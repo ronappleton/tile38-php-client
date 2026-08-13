@@ -6,15 +6,15 @@ namespace Ronappleton\Tile38PhpClient\Commands\Objects;
 
 use Ronappleton\Tile38PhpClient\Commands\Interfaces\CommandObject;
 
-class GeoHash implements CommandObject
+class StringValue implements CommandObject
 {
-    private function __construct(private readonly string $hash)
+    private function __construct(private readonly string $value)
     {
     }
 
-    public static function make(string $hash): self
+    public static function make(string $value): self
     {
-        return new self($hash);
+        return new self($value);
     }
 
     /**
@@ -23,8 +23,8 @@ class GeoHash implements CommandObject
     public function toArguments(): array
     {
         return [
-            'HASH',
-            $this->hash,
+            'STRING',
+            $this->value,
         ];
     }
 }

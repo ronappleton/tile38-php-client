@@ -6,24 +6,48 @@ namespace Ronappleton\Tile38PhpClient\Clients;
 
 use Redis;
 use Ronappleton\Tile38PhpClient\Exceptions\CommandDoesNotExist;
-
 use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
 
 use function class_exists;
+use function count;
+use function sprintf;
+use function ucfirst;
 
 /**
  * Channel Group
+ *
  * @method chan(string $channelSearchPattern);
  * Connection Group
  * @method auth(string $password);
  * @method output(string $output);
  * @method ping();
  * @method quit();
+ * Key Group
+ * @method bounds(string $key, string $id);
+ * @method del(string $key, string $id);
+ * @method drop(string $key);
+ * @method expire(string $key, string $id, int $seconds);
+ * @method fset(string $key, string $id, string $field, mixed $value);
+ * @method get(string $key, string $id);
+ * @method jdel(string $key, string $id, string $path);
+ * @method jget(string $key, string $id, string $path);
+ * @method jset(string $key, string $id, string $path, mixed $value);
+ * @method keys(string $pattern);
+ * @method pdel(string $key, string $pattern);
+ * @method persist(string $key, string $id);
+ * @method rename(string $key, string $newKey);
+ * @method renamenx(string $key, string $newKey);
+ * @method set(string $key, string $id, mixed $object);
+ * @method stats(string $key);
+ * @method ttl(string $key, string $id);
+ * Search Group
+ * @method intersects(string $key, mixed $area);
+ * @method nearby(string $key, mixed $area);
+ * @method scan(string $key);
+ * @method search(string $key);
+ * @method within(string $key, mixed $area);
  *
  * @method raw(string $command, mixed $arguments);
- *
- *
- * @method ttl(string $key, string $id);
  */
 class Tile38
 {
@@ -32,24 +56,22 @@ class Tile38
     private string $commandNamespace = 'Ronappleton\Tile38PhpClient\Commands';
     
     public function __construct(
-        string $host, 
-        int $port = 9_851, 
-        string $password = null,
+        string $host,
+        int $port = 9851,
+        ?string $password = null,
         float $timeout = 0.0,
-        mixed $reserved = null, 
-        int $retryInterval = 0, 
+        mixed $reserved = null,
+        int $retryInterval = 0,
         float $readTimeout = 0.0,
+        ?Redis $client = null,
     ) {
-        $this->client = new Redis;
-        
-        $this->client->connect(
-            $host,
-            $port,
-            $timeout,
-            $reserved,
-            $retryInterval,
-            $readTimeout,
-        );
+        $this->client = $client ?? new Redis();
+
+        if ($client !== null) {
+            return;
+        }
+
+        $this->client->connect($host, $port, $timeout, $reserved, $retryInterval, $readTimeout);
 
         if (!$password) {
             return;
@@ -61,29 +83,32 @@ class Tile38
     /**
      * @param array<int, mixed> $arguments
      */
+    private function setOutput(array $arguments): self
+    {
+        if (!count($arguments)) {
+            throw new RequiredArgumentCount(1);
+        }
+
+        $this->client->rawCommand('OUTPUT', $arguments[0]);
+
+        return $this;
+    }
+
+    /**
+     * @param array<int, mixed> $arguments
+     */
     public function __call(string $command, array $arguments = []): mixed
     {
         if ($command === 'output') {
             return $this->setOutput($arguments);
         }
-        
+
         $classFqdn = sprintf('%s\\%s', $this->commandNamespace, ucfirst($command));
 
         if (!class_exists($classFqdn)) {
             throw new CommandDoesNotExist($classFqdn);
         }
 
-        return (new $classFqdn($this->client, $arguments));
-    }
-
-    private function setOutput(array $arguments): Tile38
-    {
-        if (!count($arguments)) {
-            throw new RequiredArgumentCount(1);
-        }
-        
-        $this->client->rawCommand('OUTPUT', $arguments[0]);
-
-        return $this;
+        return new $classFqdn($this->client, $arguments);
     }
 }

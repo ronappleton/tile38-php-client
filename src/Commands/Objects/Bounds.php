@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Ronappleton\Tile38PhpClient\Commands\Objects;
 
-use Ronappleton\Tile38PhpClient\Commands\Interfaces\Stringable;
+use Ronappleton\Tile38PhpClient\Commands\Interfaces\CommandObject;
 
-class Bounds implements Stringable
+class Bounds implements CommandObject
 {
     private function __construct(
-        private readonly float $southwestLatitude, 
+        private readonly float $southwestLatitude,
         private readonly float $southwestLongitude,
         private readonly float $northeastLatitude,
         private readonly float $northeastLongitude,
@@ -21,18 +21,21 @@ class Bounds implements Stringable
         float $southwestLongitude,
         float $northeastLatitude,
         float $northeastLongitude,
-    ): Bounds {
+    ): self {
         return new self($southwestLatitude, $southwestLongitude, $northeastLatitude, $northeastLongitude);
     }
-    
-    public function toString(): string
+
+    /**
+     * @return array<int, string>
+     */
+    public function toArguments(): array
     {
-        return sprintf(
-            'BOUNDS %f %f %f %f',
-            $this->southwestLatitude, 
-            $this->southwestLongitude, 
-            $this->northeastLatitude, 
-            $this->northeastLongitude
-        );
+        return [
+            'BOUNDS',
+            (string) $this->southwestLatitude,
+            (string) $this->southwestLongitude,
+            (string) $this->northeastLatitude,
+            (string) $this->northeastLongitude,
+        ];
     }
 }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Ronappleton\Tile38PhpClient\Commands\Interfaces;
 
-interface Timeout
+interface CommandObject
 {
     /**
-     * @return static
+     * @return array<int, string>
      */
-    public function timeout(float $timeout): static;
+    public function toArguments(): array;
 }

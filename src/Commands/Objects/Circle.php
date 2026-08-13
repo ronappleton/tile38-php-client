@@ -6,18 +6,18 @@ namespace Ronappleton\Tile38PhpClient\Commands\Objects;
 
 use Ronappleton\Tile38PhpClient\Commands\Interfaces\CommandObject;
 
-class Point implements CommandObject
+class Circle implements CommandObject
 {
     private function __construct(
         private readonly float $latitude,
         private readonly float $longitude,
-        private readonly ?float $z = null,
+        private readonly float $meters,
     ) {
     }
 
-    public static function make(float $latitude, float $longitude, ?float $z = null): self
+    public static function make(float $latitude, float $longitude, float $meters): self
     {
-        return new self($latitude, $longitude, $z);
+        return new self($latitude, $longitude, $meters);
     }
 
     /**
@@ -25,16 +25,11 @@ class Point implements CommandObject
      */
     public function toArguments(): array
     {
-        $arguments = [
-            'POINT',
+        return [
+            'CIRCLE',
             (string) $this->latitude,
             (string) $this->longitude,
+            (string) $this->meters,
         ];
-
-        if ($this->z !== null) {
-            $arguments[] = (string) $this->z;
-        }
-
-        return $arguments;
     }
 }
