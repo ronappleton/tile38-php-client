@@ -17,6 +17,11 @@ use function ucfirst;
  * Channel Group
  *
  * @method chan(string $channelSearchPattern);
+ * @method delchan(string $pattern);
+ * @method pdelchan(string $pattern);
+ * @method psubscribe(string $pattern);
+ * @method setchan(string $name, mixed $searchType, string $key, mixed $area);
+ * @method subscribe(string $pattern);
  * Connection Group
  * @method auth(string $password);
  * @method output(string $output);
@@ -40,17 +45,44 @@ use function ucfirst;
  * @method set(string $key, string $id, mixed $object);
  * @method stats(string $key);
  * @method ttl(string $key, string $id);
+ * Scripting Group
+ * @method eval(string $script, int $numKeys);
+ * @method evalna(string $script, int $numKeys);
+ * @method evalnasha(string $sha, int $numKeys);
+ * @method evalro(string $script, int $numKeys);
+ * @method evalrosha(string $sha, int $numKeys);
+ * @method evalsha(string $sha, int $numKeys);
+ * @method script(string $subCommand);
  * Search Group
  * @method intersects(string $key, mixed $area);
  * @method nearby(string $key, mixed $area);
  * @method scan(string $key);
  * @method search(string $key);
  * @method within(string $key, mixed $area);
+ * Server Group
+ * @method config(string $subCommand);
+ * @method flushdb();
+ * @method follow(string $host, int $port);
+ * @method gc();
+ * @method readonly();
+ * @method server();
+ * Utility Group
+ * @method test();
+ * Webhook Group
+ * @method delhook(string $name);
+ * @method hooks(string $pattern);
+ * @method pdelhook(string $pattern);
+ * @method sethook(string $name, string $endpoint, mixed $searchType, string $key, mixed $area);
  *
  * @method raw(string $command, mixed $arguments);
  */
 class Tile38
 {
+    private const array COMMAND_ALIASES = [
+        'eval' => 'EvalScript',
+        'readonly' => 'ReadonlyMode',
+    ];
+
     private readonly Redis $client;
 
     private string $commandNamespace = 'Ronappleton\Tile38PhpClient\Commands';
@@ -103,7 +135,8 @@ class Tile38
             return $this->setOutput($arguments);
         }
 
-        $classFqdn = sprintf('%s\\%s', $this->commandNamespace, ucfirst($command));
+        $className = self::COMMAND_ALIASES[$command] ?? ucfirst($command);
+        $classFqdn = sprintf('%s\\%s', $this->commandNamespace, $className);
 
         if (!class_exists($classFqdn)) {
             throw new CommandDoesNotExist($classFqdn);

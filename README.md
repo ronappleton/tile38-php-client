@@ -7,16 +7,16 @@ A php client for the Tile38 Ultra Fast Geospatial Database
 
 GeoJSON objects are provided by the [php-geojson](https://github.com/ronappleton/php-geojson) object builder, which is a dependency of this package.
 
-## Commands Covered - Updated as Implemented
+## Commands Covered
 
 | Group       | Command Name    | Command   |
 |-------------|-----------------|-----------|
 | Channels    | CHANS           | ✅         |
-| Channels    | DELCHAN         | ❌         |
-| Channels    | PDELCHAN        | ❌         |
-| Channels    | PSUBSCRIBE      | ❌         |
-| Channels    | SETCHAN         | ❌         |
-| Channels    | SUBSCRIBE       | ❌         |
+| Channels    | DELCHAN         | ✅         |
+| Channels    | PDELCHAN        | ✅         |
+| Channels    | PSUBSCRIBE      | ✅         |
+| Channels    | SETCHAN         | ✅         |
+| Channels    | SUBSCRIBE       | ✅         |
 | ---------   | ----------      | -------   |
 | Connection  | AUTH            | ✅         |
 | Connection  | OUTPUT          | ✅         |
@@ -42,35 +42,37 @@ GeoJSON objects are provided by the [php-geojson](https://github.com/ronappleton
 | Keys        | STATS           | ✅         |
 | Keys        | TTL             | ✅         |
 | ---------   | ----------      | -------   |
-| Scripting   | EVAL            | ❌         |
-| Scripting   | EVALNA          | ❌         |
-| Scripting   | EVALNASHA       | ❌         |
-| Scripting   | EVALRO          | ❌         |
-| Scripting   | EVALROSHA       | ❌         |
-| Scripting   | EVALSHA         | ❌         |
-| Scripting   | SCRIPT EXISTS   | ❌         |
-| Scripting   | SCRIPT FLUSH    | ❌         |
-| Scripting   | SCRIPT LOAD     | ❌         |
+| Scripting   | EVAL            | ✅         |
+| Scripting   | EVALNA          | ✅         |
+| Scripting   | EVALNASHA       | ✅         |
+| Scripting   | EVALRO          | ✅         |
+| Scripting   | EVALROSHA       | ✅         |
+| Scripting   | EVALSHA         | ✅         |
+| Scripting   | SCRIPT EXISTS   | ✅         |
+| Scripting   | SCRIPT FLUSH    | ✅         |
+| Scripting   | SCRIPT LOAD     | ✅         |
 | ---------   | ----------      | -------   |
 | Search      | INTERSECTS      | ✅         |
 | Search      | NEARBY          | ✅         |
 | Search      | SCAN            | ✅         |
 | Search      | SEARCH          | ✅         |
 | Search      | WITHIN          | ✅         |
-| Server      | CONFIG GET      | ❌         |
-| Server      | CONFIG REWRITE  | ❌         |
-| Server      | CONFIG SET      | ❌         |
-| Server      | FLUSHDB         | ❌         |
-| Server      | GC              | ❌         |
-| Server      | READONLY        | ❌         |
+| Server      | CONFIG GET      | ✅         |
+| Server      | CONFIG REWRITE  | ✅         |
+| Server      | CONFIG SET      | ✅         |
+| Server      | FLUSHDB         | ✅         |
+| Server      | GC              | ✅         |
+| Server      | READONLY        | ✅         |
 | Server      | SERVER          | ✅         |
 | ---------   | ----------      | -------   |
-| Webhooks    | DELHOOK         | ❌         |
-| Webhooks    | HOOKS           | ❌         |
-| Webhooks    | PDELHOOK        | ❌         |
-| Webhooks    | SETHOOK         | ❌         |
+| Replication | FOLLOW          | ✅         |
 | ---------   | ----------      | -------   |
-| Utility     | TEST            | ❌         |
+| Webhooks    | DELHOOK         | ✅         |
+| Webhooks    | HOOKS           | ✅         |
+| Webhooks    | PDELHOOK        | ✅         |
+| Webhooks    | SETHOOK         | ✅         |
+| ---------   | ----------      | -------   |
+| Utility     | TEST            | ✅         |
 | Utility     | RAW             | ✅         |
 
 ## Usage
@@ -81,6 +83,7 @@ use RonAppleton\GeoJson\Objects\Factory;
 use Ronappleton\Tile38PhpClient\Clients\Tile38;
 use Ronappleton\Tile38PhpClient\Commands\Objects\GeoJson;
 use Ronappleton\Tile38PhpClient\Commands\Objects\Point;
+use Ronappleton\Tile38PhpClient\Enums\SearchType;
 
 $client = new Tile38('127.0.0.1', 9851);
 
@@ -98,6 +101,12 @@ $client->nearby('fleet', Point::make(33.462, -112.268, 6000))
     ->limit(10)
     ->distance()
     ->points()
+    ->execute();
+
+// Create a geofenced pub/sub channel.
+$client->setchan('warehouse', SearchType::Nearby, 'fleet', Point::make(33.5123, -112.2693, 500))
+    ->fence()
+    ->detect('enter,exit')
     ->execute();
 ```
 

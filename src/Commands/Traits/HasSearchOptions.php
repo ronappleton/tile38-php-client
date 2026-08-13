@@ -179,18 +179,26 @@ trait HasSearchOptions
     /**
      * @return array<int, mixed>
      */
-    protected function buildArguments(): array
+    protected function buildSearchArguments(string $key, mixed $area = null): array
     {
-        $arguments = [$this->arguments[0]];
+        $arguments = [$key];
 
         foreach ($this->searchOptions as $option) {
             $arguments[] = $option;
         }
 
-        if (isset($this->arguments[1])) {
-            $arguments[] = $this->arguments[1];
+        if ($area !== null) {
+            $arguments[] = $area;
         }
 
-        return $this->formatArguments($arguments);
+        return $arguments;
+    }
+
+    /**
+     * @return array<int, mixed>
+     */
+    protected function buildArguments(): array
+    {
+        return $this->formatArguments($this->buildSearchArguments($this->arguments[0], $this->arguments[1] ?? null));
     }
 }

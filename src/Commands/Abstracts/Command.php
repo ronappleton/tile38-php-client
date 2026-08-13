@@ -14,6 +14,8 @@ use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
 use function count;
 use function gettype;
 
+use BackedEnum;
+
 abstract class Command implements CommandInterface
 {
     protected string $command = '';
@@ -88,10 +90,14 @@ abstract class Command implements CommandInterface
      */
     private function objectArguments(object $argument): array
     {
-        if (!$argument instanceof CommandObject) {
-            throw new ObjectNotCommandObject($argument::class);
+        if ($argument instanceof CommandObject) {
+            return $argument->toArguments();
         }
 
-        return $argument->toArguments();
+        if ($argument instanceof BackedEnum) {
+            return [(string) $argument->value];
+        }
+
+        throw new ObjectNotCommandObject($argument::class);
     }
 }

@@ -20,13 +20,18 @@ use Ronappleton\Tile38PhpClient\Commands\Raw;
 use Ronappleton\Tile38PhpClient\Commands\Scan;
 use Ronappleton\Tile38PhpClient\Commands\Search;
 use Ronappleton\Tile38PhpClient\Commands\Set;
+use Ronappleton\Tile38PhpClient\Commands\Setchan;
+use Ronappleton\Tile38PhpClient\Commands\Sethook;
 use Ronappleton\Tile38PhpClient\Commands\Within;
+use Ronappleton\Tile38PhpClient\Enums\SearchType;
 use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
 use Ronappleton\Tile38PhpClient\Tests\Support\RedisStub;
 
 use function array_fill;
 use function array_map;
 use function ucfirst;
+
+use Ronappleton\Tile38PhpClient\Commands\EvalScript;
 
 class CommandsTest extends TestCase
 {
@@ -53,6 +58,26 @@ class CommandsTest extends TestCase
         'jget' => ['JGET', ['fleet', 'truck1', 'location']],
         'jdel' => ['JDEL', ['fleet', 'truck1', 'location']],
         'pdel' => ['PDEL', ['fleet', 'truck*']],
+        'delchan' => ['DELCHAN', ['warehouse']],
+        'pdelchan' => ['PDELCHAN', ['ware*']],
+        'subscribe' => ['SUBSCRIBE', ['warehouse']],
+        'psubscribe' => ['PSUBSCRIBE', ['ware*']],
+        'config' => ['CONFIG', ['get', 'requirepass']],
+        'flushdb' => ['FLUSHDB', []],
+        'follow' => ['FOLLOW', ['leader', 9851]],
+        'gc' => ['GC', []],
+        'readonly' => ['READONLY', []],
+        'eval' => ['EVAL', ['return KEYS[1]', 1, 'mykey']],
+        'evalsha' => ['EVALSHA', ['d8bc1591', 0]],
+        'evalna' => ['EVALNA', ['return 1', 0]],
+        'evalnasha' => ['EVALNASHA', ['d8bc1591', 0]],
+        'evalro' => ['EVALRO', ['return 1', 0]],
+        'evalrosha' => ['EVALROSHA', ['d8bc1591', 0]],
+        'script' => ['SCRIPT', ['flush']],
+        'delhook' => ['DELHOOK', ['warehouse']],
+        'pdelhook' => ['PDELHOOK', ['ware*']],
+        'hooks' => ['HOOKS', ['ware*']],
+        'test' => ['TEST', []],
     ];
 
     /**
@@ -63,8 +88,14 @@ class CommandsTest extends TestCase
         $provider = [];
 
         foreach (self::COMMANDS as $name => [$command, $arguments]) {
+            $className = match ($name) {
+                'eval' => 'EvalScript',
+                'readonly' => 'ReadonlyMode',
+                default => ucfirst($name),
+            };
+
             $provider[$name] = [
-                'class' => 'Ronappleton\\Tile38PhpClient\\Commands\\' . ucfirst($name),
+                'class' => 'Ronappleton\\Tile38PhpClient\\Commands\\' . $className,
                 'arguments' => $arguments,
                 'expected' => [[$command, ... array_map(
                     static fn (mixed $value): string => (string) $value,
@@ -87,6 +118,12 @@ class CommandsTest extends TestCase
             'set needs key, id and object' => [Set::class, ['fleet', 'truck1']],
             'nearby needs key and area' => [Nearby::class, ['fleet']],
             'fset needs four arguments' => [Fset::class, ['fleet', 'truck1', 'speed']],
+            'setchan needs name, type, key and area' => [Setchan::class, ['warehouse', 'NEARBY', 'fleet']],
+            'sethook needs name, endpoint, type, key and area' => [
+                Sethook::class,
+                ['warehouse', 'http://example.com', 'NEARBY', 'fleet'],
+            ],
+            'eval needs script and numkeys' => [EvalScript::class, ['return 1']],
         ];
     }
 
@@ -298,6 +335,66 @@ class CommandsTest extends TestCase
         $command->execute();
 
         self::assertSame([['SCAN', 'fleet']], $redis->recordedCommands);
+    }
+
+    public function testSetchanWithGeofence(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Setchan($redis, ['warehouse', SearchType::Nearby, 'fleet', Point::make(33.5, - 112.3, 500)]);
+        $command->where('speed', 70, '+inf')->fence()->detect('enter,exit');
+
+        $command->execute();
+
+        self::assertSame(
+            [[
+                'SETCHAN', 'warehouse', 'NEARBY', 'fleet', 'WHERE', 'speed', '70',
+                '+inf', 'FENCE', 'DETECT', 'enter,exit', 'POINT', '33.5', '-112.3', '500',
+            ]],
+            $redis->recordedCommands,
+        );
+    }
+
+    public function testSetchanWithMetaAndExpiry(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Setchan(
+            $redis,
+            ['warehouse', SearchType::Within, 'fleet', Bounds::make(33.462, - 112.268, 33.491, - 112.245)],
+        );
+        $command->meta('type', 'highway')->ex(60)->fence();
+
+        $command->execute();
+
+        self::assertSame(
+            [[
+                'SETCHAN', 'warehouse', 'META', 'type', 'highway', 'EX', '60', 'WITHIN',
+                'fleet', 'FENCE', 'BOUNDS', '33.462', '-112.268', '33.491', '-112.245',
+            ]],
+            $redis->recordedCommands,
+        );
+    }
+
+    public function testSethookWithGeofence(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Sethook(
+            $redis,
+            ['warehouse', 'http://example.com/hook', SearchType::Nearby, 'fleet', Point::make(33.5, - 112.3, 500)],
+        );
+        $command->fence()->commands('all');
+
+        $command->execute();
+
+        self::assertSame(
+            [[
+                'SETHOOK', 'warehouse', 'http://example.com/hook', 'NEARBY', 'fleet', 'FENCE',
+                'COMMANDS', 'all', 'POINT', '33.5', '-112.3', '500',
+            ]],
+            $redis->recordedCommands,
+        );
     }
 
     /**

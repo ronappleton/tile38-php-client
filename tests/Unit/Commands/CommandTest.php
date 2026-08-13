@@ -7,6 +7,7 @@ namespace Ronappleton\Tile38PhpClient\Tests\Unit\Commands;
 use PHPUnit\Framework\TestCase;
 use Ronappleton\Tile38PhpClient\Commands\Objects\Point;
 use Ronappleton\Tile38PhpClient\Commands\Ping;
+use Ronappleton\Tile38PhpClient\Enums\SearchType;
 use Ronappleton\Tile38PhpClient\Exceptions\InvalidType;
 use Ronappleton\Tile38PhpClient\Exceptions\ObjectNotCommandObject;
 use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
@@ -50,6 +51,16 @@ class CommandTest extends TestCase
         self::assertSame(
             ['POINT', '33.5123', '-112.2693'],
             $command->formatArguments([Point::make(33.5123, - 112.2693)]),
+        );
+    }
+
+    public function testFormattingBackedEnumFlattensToValue(): void
+    {
+        $command = new Ping(new RedisStub());
+
+        self::assertSame(
+            ['NEARBY'],
+            $command->formatArguments([SearchType::Nearby]),
         );
     }
 
