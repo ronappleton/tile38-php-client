@@ -6,13 +6,13 @@ namespace Ronappleton\Tile38PhpClient\Tests\Unit\Commands;
 
 use PHPUnit\Framework\TestCase;
 use Ronappleton\Tile38PhpClient\Commands\Objects\Point;
-use Ronappleton\Tile38PhpClient\Commands\Ping;
+use Ronappleton\Tile38PhpClient\Commands\Connection\Ping;
 use Ronappleton\Tile38PhpClient\Enums\SearchType;
 use Ronappleton\Tile38PhpClient\Exceptions\InvalidType;
 use Ronappleton\Tile38PhpClient\Exceptions\ObjectNotCommandObject;
 use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
 use Ronappleton\Tile38PhpClient\Tests\Support\RedisStub;
-use Ronappleton\Tile38PhpClient\Commands\Chans;
+use Ronappleton\Tile38PhpClient\Commands\Channel\Chans;
 use stdClass;
 
 class CommandTest extends TestCase

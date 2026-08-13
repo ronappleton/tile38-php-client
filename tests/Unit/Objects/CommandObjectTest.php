@@ -16,7 +16,7 @@ use Ronappleton\Tile38PhpClient\Commands\Objects\QuadKey;
 use Ronappleton\Tile38PhpClient\Commands\Objects\Sector;
 use Ronappleton\Tile38PhpClient\Commands\Objects\StringValue;
 use Ronappleton\Tile38PhpClient\Commands\Objects\Tile;
-use Ronappleton\Tile38PhpClient\Exceptions\GeoJson as GeoJsonException;
+use Ronappleton\Tile38PhpClient\Exceptions\InvalidGeoJson;
 
 class CommandObjectTest extends TestCase
 {
@@ -109,7 +109,7 @@ class CommandObjectTest extends TestCase
 
     public function testGeoJsonBoundingBoxThrows(): void
     {
-        $this->expectException(GeoJsonException::class);
+        $this->expectException(InvalidGeoJson::class);
 
         $boundingBox = Factory::make(GeoJsonType::BoundingBox);
         $southwest = Factory::make(GeoJsonType::Point);

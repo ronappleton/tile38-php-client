@@ -1,0 +1,14 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Ronappleton\Tile38PhpClient\Commands\Key;
+
+use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command as AbstractCommand;
+
+class Ttl extends AbstractCommand
+{
+    protected string $command = 'TTL';
+    
+    protected int $argumentCountRequired = 2;
+}

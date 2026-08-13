@@ -8,7 +8,7 @@ use JsonException;
 use RonAppleton\GeoJson\Abstracts\GeoJsonObject as BaseGeoJsonObject;
 use RonAppleton\GeoJson\Enums\GeoJsonType;
 use Ronappleton\Tile38PhpClient\Commands\Interfaces\CommandObject;
-use Ronappleton\Tile38PhpClient\Exceptions\GeoJson as GeoJsonException;
+use Ronappleton\Tile38PhpClient\Exceptions\InvalidGeoJson;
 
 use function json_encode;
 
@@ -28,7 +28,7 @@ class GeoJson implements CommandObject
     /**
      * @return array<int, string>
      *
-     * @throws GeoJsonException
+     * @throws InvalidGeoJson
      * @throws JsonException
      */
     public function toArguments(): array
@@ -40,13 +40,13 @@ class GeoJson implements CommandObject
     }
 
     /**
-     * @throws GeoJsonException
+     * @throws InvalidGeoJson
      * @throws JsonException
      */
     private function toJson(): string
     {
         if ($this->object->getType() === GeoJsonType::BoundingBox) {
-            throw new GeoJsonException('A bounding box cannot be used as a GeoJSON object.');
+            throw new InvalidGeoJson('A bounding box cannot be used as a GeoJSON object.');
         }
 
         if ($this->object->getType() === GeoJsonType::Point) {

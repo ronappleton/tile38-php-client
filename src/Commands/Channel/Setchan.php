@@ -1,0 +1,52 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Ronappleton\Tile38PhpClient\Commands\Channel;
+
+use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
+use Ronappleton\Tile38PhpClient\Commands\Traits\HasSearchOptions;
+
+class Setchan extends Command
+{
+    use HasSearchOptions;
+
+    protected string $command = 'SETCHAN';
+
+    protected int $argumentCountRequired = 4;
+
+    /**
+     * @var array<int, mixed>
+     */
+    protected array $extras = [];
+
+    public function meta(string $name, mixed $value): static
+    {
+        $this->extras[] = ['META', $name, $value];
+
+        return $this;
+    }
+
+    public function ex(int $seconds): static
+    {
+        $this->extras[] = ['EX', $seconds];
+
+        return $this;
+    }
+
+    /**
+     * @return array<int, mixed>
+     */
+    protected function buildArguments(): array
+    {
+        $prefix = [
+            $this->arguments[0],
+            ... $this->extras,
+            $this->arguments[1],
+        ];
+
+        $search = $this->buildSearchArguments($this->arguments[2], $this->arguments[3]);
+
+        return $this->formatArguments([... $prefix, ... $search]);
+    }
+}

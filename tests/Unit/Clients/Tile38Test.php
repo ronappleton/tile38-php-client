@@ -7,12 +7,12 @@ namespace Ronappleton\Tile38PhpClient\Tests\Unit\Clients;
 use PHPUnit\Framework\TestCase;
 use Ronappleton\Tile38PhpClient\Clients\Tile38;
 use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
-use Ronappleton\Tile38PhpClient\Commands\Chans;
-use Ronappleton\Tile38PhpClient\Commands\Set;
+use Ronappleton\Tile38PhpClient\Commands\Channel\Chans;
+use Ronappleton\Tile38PhpClient\Commands\Key\Set;
 use Ronappleton\Tile38PhpClient\Exceptions\CommandDoesNotExist;
 use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
 use Ronappleton\Tile38PhpClient\Tests\Support\RedisStub;
-use Ronappleton\Tile38PhpClient\Commands\Renamenx;
+use Ronappleton\Tile38PhpClient\Commands\Key\Renamenx;
 
 class Tile38Test extends TestCase
 {
