@@ -12,6 +12,7 @@ use Ronappleton\Tile38PhpClient\Commands\Set;
 use Ronappleton\Tile38PhpClient\Exceptions\CommandDoesNotExist;
 use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
 use Ronappleton\Tile38PhpClient\Tests\Support\RedisStub;
+use Ronappleton\Tile38PhpClient\Commands\Renamenx;
 
 class Tile38Test extends TestCase
 {
@@ -40,6 +41,15 @@ class Tile38Test extends TestCase
         $command = $client->set('fleet', 'truck1', ['POINT', '33.5123', '-112.2693']);
 
         self::assertInstanceOf(Set::class, $command);
+    }
+
+    public function testDispatchIsCaseInsensitive(): void
+    {
+        $client = new Tile38('127.0.0.1', 9851, null, 0.0, null, 0, 0.0, new RedisStub());
+
+        $command = $client->renameNx('fleet', 'fleet2');
+
+        self::assertInstanceOf(Renamenx::class, $command);
     }
 
     public function testOutputSendsRawOutputCommand(): void

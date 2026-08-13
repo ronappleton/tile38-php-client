@@ -11,6 +11,7 @@ use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
 use function class_exists;
 use function count;
 use function sprintf;
+use function strtolower;
 use function ucfirst;
 
 /**
@@ -31,7 +32,10 @@ use function ucfirst;
  * @method bounds(string $key, string $id);
  * @method del(string $key, string $id);
  * @method drop(string $key);
+ * @method exists(string $key, string $id);
  * @method expire(string $key, string $id, int $seconds);
+ * @method fexists(string $key, string $id, string $field);
+ * @method fget(string $key, string $id, string $field);
  * @method fset(string $key, string $id, string $field, mixed $value);
  * @method get(string $key, string $id);
  * @method jdel(string $key, string $id, string $path);
@@ -64,8 +68,15 @@ use function ucfirst;
  * @method flushdb();
  * @method follow(string $host, int $port);
  * @method gc();
+ * @method healthz();
+ * @method info();
  * @method readonly();
+ * @method role();
  * @method server();
+ * Replication Group
+ * @method aof(int $pos);
+ * @method aofmd5(int $pos, int $size);
+ * @method aofshrink();
  * Utility Group
  * @method test();
  * Webhook Group
@@ -131,6 +142,8 @@ class Tile38
      */
     public function __call(string $command, array $arguments = []): mixed
     {
+        $command = strtolower($command);
+
         if ($command === 'output') {
             return $this->setOutput($arguments);
         }

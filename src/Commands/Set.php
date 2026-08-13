@@ -45,6 +45,13 @@ class Set extends Command
         return $this;
     }
 
+    public function rx(): static
+    {
+        $this->extras[] = ['RX'];
+
+        return $this;
+    }
+
     public function execute(): mixed
     {
         return $this->client->rawCommand(

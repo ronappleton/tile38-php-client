@@ -6,9 +6,9 @@ namespace Ronappleton\Tile38PhpClient\Commands;
 
 use Ronappleton\Tile38PhpClient\Commands\Abstracts\Command;
 
-class Bounds extends Command
+class Exists extends Command
 {
-    protected string $command = 'BOUNDS';
+    protected string $command = 'EXISTS';
 
-    protected int $argumentCountRequired = 1;
+    protected int $argumentCountRequired = 2;
 }

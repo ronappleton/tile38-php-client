@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ronappleton\Tile38PhpClient\Commands\Traits;
 
+use Ronappleton\Tile38PhpClient\Commands\Interfaces\CommandObject;
+
 use function count;
 
 trait HasSearchOptions
@@ -12,6 +14,11 @@ trait HasSearchOptions
      * @var array<int, mixed>
      */
     protected array $searchOptions = [];
+
+    /**
+     * @var array<int, mixed>
+     */
+    protected array $outputOptions = [];
 
     public function cursor(int $start): static
     {
@@ -85,6 +92,13 @@ trait HasSearchOptions
         return $this;
     }
 
+    public function clipby(CommandObject $area): static
+    {
+        $this->searchOptions[] = ['CLIPBY', ... $area->toArguments()];
+
+        return $this;
+    }
+
     public function distance(): static
     {
         $this->searchOptions[] = ['DISTANCE'];
@@ -136,42 +150,42 @@ trait HasSearchOptions
 
     public function count(): static
     {
-        $this->searchOptions[] = ['COUNT'];
+        $this->outputOptions[] = ['COUNT'];
 
         return $this;
     }
 
     public function ids(): static
     {
-        $this->searchOptions[] = ['IDS'];
+        $this->outputOptions[] = ['IDS'];
 
         return $this;
     }
 
     public function objects(): static
     {
-        $this->searchOptions[] = ['OBJECTS'];
+        $this->outputOptions[] = ['OBJECTS'];
 
         return $this;
     }
 
     public function points(): static
     {
-        $this->searchOptions[] = ['POINTS'];
+        $this->outputOptions[] = ['POINTS'];
 
         return $this;
     }
 
     public function bounds(): static
     {
-        $this->searchOptions[] = ['BOUNDS'];
+        $this->outputOptions[] = ['BOUNDS'];
 
         return $this;
     }
 
     public function hashes(int $precision): static
     {
-        $this->searchOptions[] = ['HASHES', $precision];
+        $this->outputOptions[] = ['HASHES', $precision];
 
         return $this;
     }
@@ -184,6 +198,10 @@ trait HasSearchOptions
         $arguments = [$key];
 
         foreach ($this->searchOptions as $option) {
+            $arguments[] = $option;
+        }
+
+        foreach ($this->outputOptions as $option) {
             $arguments[] = $option;
         }
 

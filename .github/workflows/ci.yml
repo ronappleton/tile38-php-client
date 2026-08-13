@@ -28,3 +28,34 @@ jobs:
 
       - name: Check code style
         run: composer cs
+
+  integration:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tile38: ['1.13.0', '1.17.0', '1.22.0', '1.25.0', '1.30.0', '1.33.0', '1.38.0']
+    services:
+      tile38:
+        image: tile38/tile38:${{ matrix.tile38 }}
+        ports:
+          - 9851:9851
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: redis
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Run integration tests
+        run: composer test:integration
+        env:
+          TILE38_HOST: 127.0.0.1
+          TILE38_PORT: 9851
+          TILE38_VERSION: ${{ matrix.tile38 }}

@@ -32,6 +32,9 @@ use function array_map;
 use function ucfirst;
 
 use Ronappleton\Tile38PhpClient\Commands\EvalScript;
+use Ronappleton\Tile38PhpClient\Commands\Get;
+use Ronappleton\Tile38PhpClient\Commands\Jget;
+use Ronappleton\Tile38PhpClient\Commands\Objects\Roam;
 
 class CommandsTest extends TestCase
 {
@@ -44,7 +47,7 @@ class CommandsTest extends TestCase
         'server' => ['SERVER', []],
         'stats' => ['STATS', ['fleet']],
         'ttl' => ['TTL', ['fleet', 'truck1']],
-        'bounds' => ['BOUNDS', ['fleet', 'truck1']],
+            'bounds' => ['BOUNDS', ['fleet']],
         'del' => ['DEL', ['fleet', 'truck1']],
         'drop' => ['DROP', ['fleet']],
         'expire' => ['EXPIRE', ['fleet', 'truck1', 60]],
@@ -67,6 +70,15 @@ class CommandsTest extends TestCase
         'follow' => ['FOLLOW', ['leader', 9851]],
         'gc' => ['GC', []],
         'readonly' => ['READONLY', []],
+        'healthz' => ['HEALTHZ', []],
+        'info' => ['INFO', []],
+        'role' => ['ROLE', []],
+        'aof' => ['AOF', []],
+        'aofmd5' => ['AOFMD5', [100, 64]],
+        'aofshrink' => ['AOFSHRINK', []],
+        'exists' => ['EXISTS', ['fleet', 'truck1']],
+        'fexists' => ['FEXISTS', ['fleet', 'truck1', 'speed']],
+        'fget' => ['FGET', ['fleet', 'truck1', 'speed']],
         'eval' => ['EVAL', ['return KEYS[1]', 1, 'mykey']],
         'evalsha' => ['EVALSHA', ['d8bc1591', 0]],
         'evalna' => ['EVALNA', ['return 1', 0]],
@@ -335,6 +347,117 @@ class CommandsTest extends TestCase
         $command->execute();
 
         self::assertSame([['SCAN', 'fleet']], $redis->recordedCommands);
+    }
+
+    public function testGetWithOptions(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Get($redis, ['fleet', 'truck1']);
+        $command->withfields()->point();
+
+        $command->execute();
+
+        self::assertSame(
+            [['GET', 'fleet', 'truck1', 'WITHFIELDS', 'POINT']],
+            $redis->recordedCommands,
+        );
+    }
+
+    public function testGetWithHashes(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Get($redis, ['fleet', 'truck1']);
+        $command->hashes(22);
+
+        $command->execute();
+
+        self::assertSame([['GET', 'fleet', 'truck1', 'HASH', '22']], $redis->recordedCommands);
+    }
+
+    public function testJgetRaw(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Jget($redis, ['fleet', 'truck1', 'location']);
+        $command->raw();
+
+        $command->execute();
+
+        self::assertSame(
+            [['JGET', 'fleet', 'truck1', 'location', 'RAW']],
+            $redis->recordedCommands,
+        );
+    }
+
+    public function testSetRx(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Set($redis, ['fleet', 'truck1', Point::make(33.5, - 112.3)]);
+        $command->rx();
+
+        $command->execute();
+
+        self::assertSame(
+            [['SET', 'fleet', 'truck1', 'RX', 'POINT', '33.5', '-112.3']],
+            $redis->recordedCommands,
+        );
+    }
+
+    public function testFsetRx(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Fset($redis, ['fleet', 'truck1', 'speed', 90]);
+        $command->rx();
+
+        $command->execute();
+
+        self::assertSame(
+            [['FSET', 'fleet', 'truck1', 'speed', '90', 'RX']],
+            $redis->recordedCommands,
+        );
+    }
+
+    public function testNearbyWithRoamArea(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Nearby(
+            $redis,
+            ['fleet', Roam::make('fleet', 'truck*', 500.0)],
+        );
+        $command->fence();
+
+        $command->execute();
+
+        self::assertSame(
+            [['NEARBY', 'fleet', 'FENCE', 'ROAM', 'fleet', 'truck*', '500']],
+            $redis->recordedCommands,
+        );
+    }
+
+    public function testWithinWithClipBy(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Within(
+            $redis,
+            ['fleet', Bounds::make(33.462, - 112.268, 33.491, - 112.245)],
+        );
+        $command->clipby(Bounds::make(33.46, - 112.26, 33.49, - 112.24));
+
+        $command->execute();
+
+        self::assertSame(
+            [[
+                'WITHIN', 'fleet', 'CLIPBY', 'BOUNDS', '33.46', '-112.26',
+                '33.49', '-112.24', 'BOUNDS', '33.462', '-112.268', '33.491', '-112.245',
+            ]],
+            $redis->recordedCommands,
+        );
     }
 
     public function testSetchanWithGeofence(): void
