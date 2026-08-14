@@ -41,6 +41,7 @@ release each command or option is known to work with.
 | 1.26.0  | `SECTOR` area format                                         |
 | 1.27.0  | `BUFFER` on `WITHIN` / `INTERSECTS`                          |
 | 1.30.0  | `WHERE` filter expressions (`>`, `<`) and multiple `MATCH`   |
+| 1.30.0  | Non-numeric `FIELD` values on `SET` / `FSET`                  |
 | 1.37.0  | `WHERE` regex (`=~`)                                         |
 | 1.38.0  | `RX` on `SET` / `FSET`                                       |
 

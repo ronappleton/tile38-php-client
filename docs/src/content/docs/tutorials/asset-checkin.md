@@ -26,6 +26,10 @@ $client->set('tools', 'drill-01', Point::make(51.5007, -0.1246))
     ->execute();
 ```
 
+> String field values like `site-a` require Tile38 1.30.0+; on older versions
+> `FIELD` only accepted numbers (see
+> [Version Compatibility](/reference/version-compatibility/)).
+
 ## Check the remaining time
 
 ```php

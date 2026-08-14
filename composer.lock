@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9674203462bd4b81c6bcd1ba0537276",
+    "content-hash": "da88bf5c09c41f4a8ea5ba32e17dcc38",
     "packages": [
         {
             "name": "ronappleton/php-geojson",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ronappleton/php-geojson.git",
@@ -29,7 +29,6 @@
                 "squizlabs/php_codesniffer": "^3.8",
                 "webimpress/coding-standard": "^1.3"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -49,7 +48,7 @@
             "description": "GeoJSON object builder.",
             "support": {
                 "issues": "https://github.com/ronappleton/php-geojson/issues",
-                "source": "https://github.com/ronappleton/php-geojson/tree/master"
+                "source": "https://github.com/ronappleton/php-geojson/tree/v1.0.0"
             },
             "time": "2026-08-13T21:26:18+00:00"
         }
@@ -153,16 +152,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.x-dev",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "958a0803aae2ade58a9fa4ae31b7cade3bb9ed6f"
+                "reference": "8680aa248f8e07bc8fb43f56f0f5fc77a0c96aae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/958a0803aae2ade58a9fa4ae31b7cade3bb9ed6f",
-                "reference": "958a0803aae2ade58a9fa4ae31b7cade3bb9ed6f",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/8680aa248f8e07bc8fb43f56f0f5fc77a0c96aae",
+                "reference": "8680aa248f8e07bc8fb43f56f0f5fc77a0c96aae",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +177,6 @@
                 "phpspec/prophecy": "^1.10",
                 "phpunit/phpunit": "^7.5.20 || ^8.5.23 || ^9.5.13"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -202,7 +200,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.x"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.14.0"
             },
             "funding": [
                 {
@@ -210,20 +208,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-12T09:19:28+00:00"
+            "time": "2026-08-11T10:17:44+00:00"
         },
         {
             "name": "nikic/php-parser",
-            "version": "dev-master",
+            "version": "v5.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "fbd47f7ebcbb450138d92642a0a53b72a5285dda"
+                "reference": "044a6a392ff8ad0d61f14370a5fbbd0a0107152f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/fbd47f7ebcbb450138d92642a0a53b72a5285dda",
-                "reference": "fbd47f7ebcbb450138d92642a0a53b72a5285dda",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/044a6a392ff8ad0d61f14370a5fbbd0a0107152f",
+                "reference": "044a6a392ff8ad0d61f14370a5fbbd0a0107152f",
                 "shasum": ""
             },
             "require": {
@@ -235,7 +233,6 @@
                 "ircmaxell/php-yacc": "^0.0.7",
                 "phpunit/phpunit": "^9.0"
             },
-            "default-branch": true,
             "bin": [
                 "bin/php-parse"
             ],
@@ -266,22 +263,22 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/master"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.8.0"
             },
-            "time": "2026-07-11T16:03:13+00:00"
+            "time": "2026-07-04T14:30:18+00:00"
         },
         {
             "name": "phar-io/manifest",
-            "version": "dev-master",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/manifest.git",
-                "reference": "c581d4941e196459bf76c945a8ca922963a66708"
+                "reference": "54750ef60c58e43759730615a392c31c80e23176"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/manifest/zipball/c581d4941e196459bf76c945a8ca922963a66708",
-                "reference": "c581d4941e196459bf76c945a8ca922963a66708",
+                "url": "https://api.github.com/repos/phar-io/manifest/zipball/54750ef60c58e43759730615a392c31c80e23176",
+                "reference": "54750ef60c58e43759730615a392c31c80e23176",
                 "shasum": ""
             },
             "require": {
@@ -292,7 +289,6 @@
                 "phar-io/version": "^3.0.1",
                 "php": "^7.2 || ^8.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -328,7 +324,7 @@
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
             "support": {
                 "issues": "https://github.com/phar-io/manifest/issues",
-                "source": "https://github.com/phar-io/manifest/tree/master"
+                "source": "https://github.com/phar-io/manifest/tree/2.0.4"
             },
             "funding": [
                 {
@@ -336,7 +332,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-27T15:23:09+00:00"
+            "time": "2024-03-03T12:33:53+00:00"
         },
         {
             "name": "phar-io/version",
@@ -391,16 +387,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "2.3.x-dev",
+            "version": "2.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "326f797be0a3c8c50cbc844362b36dd7b8678421"
+                "reference": "fb19eedd2bb67ff8cf7a5502ad329e701d6398a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/326f797be0a3c8c50cbc844362b36dd7b8678421",
-                "reference": "326f797be0a3c8c50cbc844362b36dd7b8678421",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/fb19eedd2bb67ff8cf7a5502ad329e701d6398a3",
+                "reference": "fb19eedd2bb67ff8cf7a5502ad329e701d6398a3",
                 "shasum": ""
             },
             "require": {
@@ -417,7 +413,6 @@
                 "phpunit/phpunit": "^9.6",
                 "symfony/process": "^5.2"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -433,9 +428,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.3.x"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.3.3"
             },
-            "time": "2026-07-22T06:50:52+00:00"
+            "time": "2026-07-08T07:01:06+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -760,16 +755,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.x-dev",
+            "version": "10.5.64",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "bbd3c831733f0cde10220d1c759816ba48269103"
+                "reference": "0e8c1d19cea35ad97d4887f363d07c78e30fbf06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/bbd3c831733f0cde10220d1c759816ba48269103",
-                "reference": "bbd3c831733f0cde10220d1c759816ba48269103",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0e8c1d19cea35ad97d4887f363d07c78e30fbf06",
+                "reference": "0e8c1d19cea35ad97d4887f363d07c78e30fbf06",
                 "shasum": ""
             },
             "require": {
@@ -779,7 +774,7 @@
                 "ext-libxml": "*",
                 "ext-mbstring": "*",
                 "ext-xmlwriter": "*",
-                "myclabs/deep-copy": "^1.14.0",
+                "myclabs/deep-copy": "^1.13.4",
                 "phar-io/manifest": "^2.0.4",
                 "phar-io/version": "^3.2.1",
                 "php": ">=8.1",
@@ -796,7 +791,7 @@
                 "sebastian/exporter": "^5.1.4",
                 "sebastian/global-state": "^6.0.2",
                 "sebastian/object-enumerator": "^5.0.0",
-                "sebastian/recursion-context": "^5.0.2",
+                "sebastian/recursion-context": "^5.0.1",
                 "sebastian/type": "^4.0.0",
                 "sebastian/version": "^4.0.1"
             },
@@ -841,7 +836,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.64"
             },
             "funding": [
                 {
@@ -849,7 +844,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-08-11T14:10:24+00:00"
+            "time": "2026-07-06T14:50:35+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -910,23 +905,23 @@
         },
         {
             "name": "sebastian/code-unit",
-            "version": "2.0.x-dev",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/code-unit.git",
-                "reference": "807b5e65ab7b7b16e1928d924c7973aa451fa295"
+                "reference": "a81fee9eef0b7a76af11d121767abc44c104e503"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/code-unit/zipball/807b5e65ab7b7b16e1928d924c7973aa451fa295",
-                "reference": "807b5e65ab7b7b16e1928d924c7973aa451fa295",
+                "url": "https://api.github.com/repos/sebastianbergmann/code-unit/zipball/a81fee9eef0b7a76af11d121767abc44c104e503",
+                "reference": "a81fee9eef0b7a76af11d121767abc44c104e503",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^10.5"
+                "phpunit/phpunit": "^10.0"
             },
             "type": "library",
             "extra": {
@@ -954,8 +949,7 @@
             "homepage": "https://github.com/sebastianbergmann/code-unit",
             "support": {
                 "issues": "https://github.com/sebastianbergmann/code-unit/issues",
-                "security": "https://github.com/sebastianbergmann/code-unit/security/policy",
-                "source": "https://github.com/sebastianbergmann/code-unit/tree/2.0"
+                "source": "https://github.com/sebastianbergmann/code-unit/tree/2.0.0"
             },
             "funding": [
                 {
@@ -963,27 +957,27 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-01T09:30:48+00:00"
+            "time": "2023-02-03T06:58:43+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
-            "version": "3.0.x-dev",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git",
-                "reference": "9f7c12369107fdb7a91016bf88f27d39872a88ea"
+                "reference": "5e3a687f7d8ae33fb362c5c0743794bbb2420a1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/9f7c12369107fdb7a91016bf88f27d39872a88ea",
-                "reference": "9f7c12369107fdb7a91016bf88f27d39872a88ea",
+                "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/5e3a687f7d8ae33fb362c5c0743794bbb2420a1d",
+                "reference": "5e3a687f7d8ae33fb362c5c0743794bbb2420a1d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^10.5"
+                "phpunit/phpunit": "^10.0"
             },
             "type": "library",
             "extra": {
@@ -1010,8 +1004,7 @@
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
             "support": {
                 "issues": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/issues",
-                "security": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/security/policy",
-                "source": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/tree/3.0"
+                "source": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/tree/3.0.0"
             },
             "funding": [
                 {
@@ -1019,7 +1012,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-01T09:31:34+00:00"
+            "time": "2023-02-03T06:59:15+00:00"
         },
         {
             "name": "sebastian/comparator",
@@ -1873,16 +1866,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.x-dev",
+            "version": "3.13.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "3d9e4c698ffb5204a0cc017bb81656fb67488ad5"
+                "reference": "4c378e1a528ea066890fc2397cbdd2f94eb2fc91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/3d9e4c698ffb5204a0cc017bb81656fb67488ad5",
-                "reference": "3d9e4c698ffb5204a0cc017bb81656fb67488ad5",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/4c378e1a528ea066890fc2397cbdd2f94eb2fc91",
+                "reference": "4c378e1a528ea066890fc2397cbdd2f94eb2fc91",
                 "shasum": ""
             },
             "require": {
@@ -1948,7 +1941,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-08-06T02:44:48+00:00"
+            "time": "2026-08-06T00:17:32+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -2057,10 +2050,8 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "ronappleton/php-geojson": 20
-    },
+    "minimum-stability": "stable",
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
