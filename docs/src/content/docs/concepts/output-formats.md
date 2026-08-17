@@ -1,8 +1,8 @@
 ---
 title: Output Formats
 description:
-  'COUNT, IDS, OBJECTS, POINTS, BOUNDS, and HASHES: and the GET output
-  selectors.'
+  "COUNT, IDS, OBJECTS, POINTS, BOUNDS, and HASHES: and the GET output
+  selectors."
 ---
 
 Search commands let you choose what the server returns.

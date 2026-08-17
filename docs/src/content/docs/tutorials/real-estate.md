@@ -1,8 +1,8 @@
 ---
 title: Real Estate Search
 description:
-  'Complex: search property boundaries as GeoJSON, filter by price and bedrooms,
-  and run point-in-boundary lookups.'
+  "Complex: search property boundaries as GeoJSON, filter by price and bedrooms,
+  and run point-in-boundary lookups."
 ---
 
 **Level:** Complex

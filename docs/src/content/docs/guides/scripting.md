@@ -1,6 +1,6 @@
 ---
 title: Lua Scripting
-description: 'EVAL, EVALSHA, and friends: running Lua inside Tile38.'
+description: "EVAL, EVALSHA, and friends: running Lua inside Tile38."
 ---
 
 Tile38 runs Lua 5.1 server-side. Scripts can call other Tile38 commands through

@@ -1,8 +1,8 @@
 ---
 title: Geofence Alerts
 description:
-  'Simple: get notified when an object enters or leaves an area, without
-  polling.'
+  "Simple: get notified when an object enters or leaves an area, without
+  polling."
 ---
 
 **Level:** Simple

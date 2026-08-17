@@ -1,8 +1,8 @@
 ---
 title: Realtime Dispatch
 description:
-  'Complex: match drivers to jobs with a geofence webhook, Lua filtering, and a
-  Redis fan-out.'
+  "Complex: match drivers to jobs with a geofence webhook, Lua filtering, and a
+  Redis fan-out."
 ---
 
 **Level:** Complex

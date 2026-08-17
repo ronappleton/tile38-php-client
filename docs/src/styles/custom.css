@@ -1,6 +1,6 @@
-@import '@fontsource-variable/ibm-plex-sans/index.css';
-@import '@fontsource-variable/familjen-grotesk/index.css';
-@import '@fontsource-variable/jetbrains-mono/index.css';
+@import "@fontsource-variable/ibm-plex-sans/index.css";
+@import "@fontsource-variable/familjen-grotesk/index.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
 
 /*
  * DESIGN CONTRACT — tile38-php-client documentation (impeccable / Read mode)
@@ -23,10 +23,10 @@
 :root {
   /* Type */
   --map-font-display:
-    'Familjen Grotesk Variable', 'Segoe UI', system-ui, sans-serif;
-  --sl-font: 'IBM Plex Sans Variable', system-ui, sans-serif;
+    "Familjen Grotesk Variable", "Segoe UI", system-ui, sans-serif;
+  --sl-font: "IBM Plex Sans Variable", system-ui, sans-serif;
   --sl-font-mono:
-    'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
+    "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
 
   /* Content measure */
   --sl-content-width: 54rem;
@@ -43,7 +43,7 @@
 }
 
 /* ============================= DARK ============================= */
-:root[data-theme='dark'] {
+:root[data-theme="dark"] {
   --sl-color-white: #e8efec;
   --sl-color-gray-1: #e8efec;
   --sl-color-gray-2: #d6e0dc;
@@ -78,7 +78,7 @@
 }
 
 /* ============================= LIGHT ============================= */
-:root[data-theme='light'] {
+:root[data-theme="light"] {
   --sl-color-white: #ffffff;
   --sl-color-gray-1: #1c2724;
   --sl-color-gray-2: #2f3b37;
@@ -332,7 +332,7 @@ body {
   opacity: 0.14;
 }
 
-[data-theme='dark'] .map-contours {
+[data-theme="dark"] .map-contours {
   opacity: 0.2;
 }
 

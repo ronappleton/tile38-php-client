@@ -1,8 +1,8 @@
 ---
 title: Track a Fleet
 description:
-  'A simple walkthrough: store vehicle positions and run nearby queries in
-  realtime.'
+  "A simple walkthrough: store vehicle positions and run nearby queries in
+  realtime."
 ---
 
 **Level:** Simple

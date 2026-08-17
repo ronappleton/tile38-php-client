@@ -1,7 +1,7 @@
 ---
 title: IoT Roaming Geofences
 description:
-  'Complex: geofences that follow a moving object, with ROAM and live channels.'
+  "Complex: geofences that follow a moving object, with ROAM and live channels."
 ---
 
 **Level:** Complex

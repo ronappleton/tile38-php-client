@@ -1,6 +1,6 @@
 ---
 title: Asset Check-In
-description: 'Simple: track equipment check-ins with automatic expiry and TTL.'
+description: "Simple: track equipment check-ins with automatic expiry and TTL."
 ---
 
 **Level:** Simple

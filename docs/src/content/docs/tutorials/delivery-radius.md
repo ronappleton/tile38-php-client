@@ -1,8 +1,8 @@
 ---
 title: Delivery Radius
 description:
-  'Complex: find orders inside a delivery area, filtered by price and status,
-  using WITHIN, fields, and GeoJSON.'
+  "Complex: find orders inside a delivery area, filtered by price and status,
+  using WITHIN, fields, and GeoJSON."
 ---
 
 **Level:** Complex

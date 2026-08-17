@@ -7,8 +7,8 @@ template: splash
 hero:
   title: Geospatial queries, at the <span class="accent">speed of a map</span>.
   tagline:
-    'A fluent PHP client for Tile38: store points, search nearby, fence in
-    geofences, and build realtime location features in minutes.'
+    "A fluent PHP client for Tile38: store points, search nearby, fence in
+    geofences, and build realtime location features in minutes."
   actions:
     - text: Quick Start
       link: /getting-started/quick-start/

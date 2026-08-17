@@ -1,7 +1,7 @@
 ---
 title: Search
 description:
-  'SCAN, SEARCH, NEARBY, WITHIN, and INTERSECTS: plus every shared option.'
+  "SCAN, SEARCH, NEARBY, WITHIN, and INTERSECTS: plus every shared option."
 ---
 
 Tile38 provides five search commands. All of them share the same modifier

@@ -1,8 +1,8 @@
 ---
 title: Object Types
 description:
-  'Points, bounds, geohashes, GeoJSON objects, and strings: and the
-  longitude/latitude gotcha.'
+  "Points, bounds, geohashes, GeoJSON objects, and strings: and the
+  longitude/latitude gotcha."
 ---
 
 Tile38 stores five kinds of objects. Each maps to a builder in

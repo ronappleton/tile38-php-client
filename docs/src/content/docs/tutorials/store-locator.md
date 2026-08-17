@@ -1,7 +1,7 @@
 ---
 title: Store Locator
 description:
-  'Simple: find the nearest branch, filtered by opening hours and type.'
+  "Simple: find the nearest branch, filtered by opening hours and type."
 ---
 
 **Level:** Simple
