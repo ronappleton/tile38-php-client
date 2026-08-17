@@ -22,9 +22,11 @@
 
 :root {
   /* Type */
-  --map-font-display: 'Familjen Grotesk Variable', 'Segoe UI', system-ui, sans-serif;
+  --map-font-display:
+    'Familjen Grotesk Variable', 'Segoe UI', system-ui, sans-serif;
   --sl-font: 'IBM Plex Sans Variable', system-ui, sans-serif;
-  --sl-font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
+  --sl-font-mono:
+    'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
 
   /* Content measure */
   --sl-content-width: 54rem;
@@ -242,7 +244,10 @@ body {
   padding: 0.7rem 1.25rem;
   border-radius: 999px;
   text-decoration: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
 }
 
 .map-hero-actions a:hover {
@@ -289,9 +294,15 @@ body {
   border-radius: 50%;
 }
 
-.map-hero-code .dot:nth-child(1) { background: #f87171; }
-.map-hero-code .dot:nth-child(2) { background: #fbbf24; }
-.map-hero-code .dot:nth-child(3) { background: #34d399; }
+.map-hero-code .dot:nth-child(1) {
+  background: #f87171;
+}
+.map-hero-code .dot:nth-child(2) {
+  background: #fbbf24;
+}
+.map-hero-code .dot:nth-child(3) {
+  background: #34d399;
+}
 
 .map-hero-code .window-bar .title {
   margin-left: 0.4rem;

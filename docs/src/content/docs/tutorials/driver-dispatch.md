@@ -1,18 +1,22 @@
 ---
 title: Realtime Dispatch
-description: "Complex: match drivers to jobs with a geofence webhook, Lua filtering, and a Redis fan-out."
+description:
+  'Complex: match drivers to jobs with a geofence webhook, Lua filtering, and a
+  Redis fan-out.'
 ---
 
 **Level:** Complex
 
-When a new job is posted, you want the nearest available drivers to be offered it immediately, without polling. Tile38's geofence webhooks do the pushing; a little Lua
-does the matching.
+When a new job is posted, you want the nearest available drivers to be offered
+it immediately, without polling. Tile38's geofence webhooks do the pushing; a
+little Lua does the matching.
 
 ## The flow
 
 1. A job is written to a `jobs` collection (a point with fields).
 2. A geofence webhook watches `jobs` for `set` events near the dispatch hub.
-3. On each event, a Lua script finds the nearest available drivers and offers them the job.
+3. On each event, a Lua script finds the nearest available drivers and offers
+   them the job.
 4. The offer is POSTed to your API for the final decision.
 
 ## Seed drivers
@@ -59,13 +63,13 @@ $client->sethook(
     ->execute();
 ```
 
-Every time a job is set within 5 km of the hub, your endpoint receives a POST with
-the job id and coordinates.
+Every time a job is set within 5 km of the hub, your endpoint receives a POST
+with the job id and coordinates.
 
 ## Match drivers in Lua
 
-In your endpoint handler, find available drivers near the job: server-side, in one
-round trip:
+In your endpoint handler, find available drivers near the job: server-side, in
+one round trip:
 
 ```php
 // In the webhook handler:
@@ -81,8 +85,8 @@ $result = $client->eval($script, 1, 'drivers', 3, 51.5074, -0.1278, 5000)->execu
 // nearest 3 available driver ids, closest first
 ```
 
-The script uses `tile38.call()` to run a `NEARBY` search from inside Tile38, so no
-extra network hop is involved.
+The script uses `tile38.call()` to run a `NEARBY` search from inside Tile38, so
+no extra network hop is involved.
 
 ## Cache the script
 
@@ -130,4 +134,5 @@ function handleDispatchEvent(string $rawBody, Tile38 $client): void
 - `->commands('set')` masks which command types trigger the webhook.
 - Lua (`EVAL`/`EVALSHA`) keeps multi-step matching server-side and atomic.
 
-**Next:** [IoT Roaming Geofences](/tutorials/iot-roaming/): ROAM and geofences that follow a moving object.
+**Next:** [IoT Roaming Geofences](/tutorials/iot-roaming/): ROAM and geofences
+that follow a moving object.

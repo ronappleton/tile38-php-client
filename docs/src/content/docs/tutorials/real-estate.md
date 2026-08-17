@@ -1,13 +1,15 @@
 ---
 title: Real Estate Search
-description: "Complex: search property boundaries as GeoJSON, filter by price and bedrooms, and run point-in-boundary lookups."
+description:
+  'Complex: search property boundaries as GeoJSON, filter by price and bedrooms,
+  and run point-in-boundary lookups.'
 ---
 
 **Level:** Complex
 
-An estate agent lists properties as GeoJSON polygons (their footprint or plot). Buyers
-search by area, price, and bedrooms. You also need "which property is this coordinate
-inside?" for reverse lookups.
+An estate agent lists properties as GeoJSON polygons (their footprint or plot).
+Buyers search by area, price, and bedrooms. You also need "which property is
+this coordinate inside?" for reverse lookups.
 
 ## Seed properties
 
@@ -55,8 +57,8 @@ $result = $client->intersects('properties', Bounds::make(51.49, -0.15, 51.52, -0
     ->execute();
 ```
 
-`INTERSECTS` returns properties that overlap the box: including a boundary-clipping
-footprint, which is what you want here.
+`INTERSECTS` returns properties that overlap the box: including a
+boundary-clipping footprint, which is what you want here.
 
 ## Tighten to "fully inside"
 

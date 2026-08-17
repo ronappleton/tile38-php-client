@@ -3,18 +3,18 @@ title: Timeouts
 description: How TIMEOUT works, and when it applies.
 ---
 
-Tile38 can abort long-running commands. The `TIMEOUT` keyword is a **wrapper**: you
-give it a number of seconds and a command, and Tile38 runs the command with a
-deadline:
+Tile38 can abort long-running commands. The `TIMEOUT` keyword is a **wrapper**:
+you give it a number of seconds and a command, and Tile38 runs the command with
+a deadline:
 
-```
+```text
 TIMEOUT 0.5 SCAN fleet COUNT
 ```
 
 ## Usage
 
-The client exposes this through `->timeout(float)` on scan, search, and scripting
-commands:
+The client exposes this through `->timeout(float)` on scan, search, and
+scripting commands:
 
 ```php
 $client->scan('fleet')->count()->timeout(0.5)->execute();
@@ -29,10 +29,10 @@ $client->nearby('fleet', Point::make(51.5, -0.12, 5000))
 
 ## Which commands support it
 
-Per Tile38, only **scan/search** commands (`SCAN`, `SEARCH`, `INTERSECTS`, `WITHIN`,
-`NEARBY`) and **scripting** commands (`EVAL`, `EVALRO`, `EVALNA`, `EVALSHA`,
-`EVALROSHA`, `EVALNASHA`) respect a timeout. All other commands ignore it, and
-attempting it on a write command is an error.
+Per Tile38, only **scan/search** commands (`SCAN`, `SEARCH`, `INTERSECTS`,
+`WITHIN`, `NEARBY`) and **scripting** commands (`EVAL`, `EVALRO`, `EVALNA`,
+`EVALSHA`, `EVALROSHA`, `EVALNASHA`) respect a timeout. All other commands
+ignore it, and attempting it on a write command is an error.
 
 ## Notes
 

@@ -1,12 +1,14 @@
 ---
 title: Geofence Alerts
-description: "Simple: get notified when an object enters or leaves an area, without polling."
+description:
+  'Simple: get notified when an object enters or leaves an area, without
+  polling.'
 ---
 
 **Level:** Simple
 
-Instead of polling "is anything inside the zone?", let Tile38 push you an event the
-moment something enters or exits.
+Instead of polling "is anything inside the zone?", let Tile38 push you an event
+the moment something enters or exits.
 
 ## Create the geofence
 
@@ -25,12 +27,13 @@ $client->setchan('warehouse', SearchType::Nearby, 'fleet', Point::make(51.5, -0.
     ->execute();
 ```
 
-Now every `fleet` object that enters or exits a 500 m radius of the warehouse fires an
-event on the `warehouse` channel.
+Now every `fleet` object that enters or exits a 500 m radius of the warehouse
+fires an event on the `warehouse` channel.
 
 ## Listen
 
-`SUBSCRIBE` streams events on the connection. It blocks, so use a dedicated client:
+`SUBSCRIBE` streams events on the connection. It blocks, so use a dedicated
+client:
 
 ```php
 $listener = new Tile38('127.0.0.1', 9851);
@@ -45,7 +48,7 @@ Each event looks roughly like:
   "command": "set",
   "detect": "enter",
   "id": "truck-12",
-  "object": {"type": "Point", "coordinates": [-0.118, 51.502]},
+  "object": { "type": "Point", "coordinates": [-0.118, 51.502] },
   "key": "fleet"
 }
 ```
@@ -72,8 +75,8 @@ $client->set('fleet', 'truck-12', Point::make(51.501, -0.121))
     ->execute();
 ```
 
-Truck-12 is inside the 500 m radius and moving faster than 70: an `enter` event is
-published.
+Truck-12 is inside the 500 m radius and moving faster than 70: an `enter` event
+is published.
 
 ## Clean up
 
@@ -88,4 +91,5 @@ $client->delchan('fast-entries')->execute();
 - `SearchType` picks the search shape (`Nearby`, `Within`, `Intersects`).
 - `->detect()` and `->where()` filter events server-side.
 
-**Next:** [Realtime Dispatch](/tutorials/driver-dispatch/): push geofence events to your own API with webhooks.
+**Next:** [Realtime Dispatch](/tutorials/driver-dispatch/): push geofence events
+to your own API with webhooks.

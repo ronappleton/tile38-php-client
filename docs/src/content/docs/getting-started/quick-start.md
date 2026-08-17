@@ -3,8 +3,9 @@ title: Quick Start
 description: Connect to Tile38, set your first point, and run a nearby search.
 ---
 
-Every call follows the same shape: **the client hands you a command, you chain options,
-then `execute()` sends it**: see [The Fluent API](/concepts/fluent-api/).
+Every call follows the same shape: **the client hands you a command, you chain
+options, then `execute()` sends it**: see
+[The Fluent API](/concepts/fluent-api/).
 
 ## 1. Connect
 
@@ -36,8 +37,8 @@ Note the coordinates come back in **GeoJSON order: longitude, latitude**.
 
 ## 4. Search nearby
 
-Find everything within 5 km of a coordinate. The third argument to `Point::make` is
-the search radius **in meters** for `nearby`:
+Find everything within 5 km of a coordinate. The third argument to `Point::make`
+is the search radius **in meters** for `nearby`:
 
 ```php
 $result = $client->nearby('fleet', Point::make(51.5074, -0.1278, 5000))
@@ -65,6 +66,8 @@ $result = $client->nearby('fleet', Point::make(51.5074, -0.1278, 5000))
 
 ## What's next
 
-- [Configuration](/getting-started/configuration/): auth, timeouts, output format.
-- [Object Types](/concepts/object-types/): points, bounds, geohashes, and GeoJSON.
+- [Configuration](/getting-started/configuration/): auth, timeouts, output
+  format.
+- [Object Types](/concepts/object-types/): points, bounds, geohashes, and
+  GeoJSON.
 - [Search](/concepts/search/): every search command and its options.

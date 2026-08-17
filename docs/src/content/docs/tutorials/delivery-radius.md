@@ -1,16 +1,19 @@
 ---
 title: Delivery Radius
-description: "Complex: find orders inside a delivery area, filtered by price and status, using WITHIN, fields, and GeoJSON."
+description:
+  'Complex: find orders inside a delivery area, filtered by price and status,
+  using WITHIN, fields, and GeoJSON.'
 ---
 
 **Level:** Complex
 
-A courier has a delivery zone. You need to hand them every open order inside that
-zone, weighted by price, in one query.
+A courier has a delivery zone. You need to hand them every open order inside
+that zone, weighted by price, in one query.
 
 ## The model
 
-- **Orders** live in a `orders` key: each is a point with `price` and `status` fields.
+- **Orders** live in a `orders` key: each is a point with `price` and `status`
+  fields.
 - **Delivery zones** are GeoJSON polygons in a `zones` key.
 
 ## Seed an order
@@ -118,4 +121,5 @@ function ordersForZone(Tile38 $client, GeoJson $zone, float $buffer = 0.0): arra
 - `where` filters combine as AND clauses.
 - `->buffer()` grows a search area by meters.
 
-**Next:** [Realtime Dispatch](/tutorials/driver-dispatch/): push matching offers to drivers over webhooks.
+**Next:** [Realtime Dispatch](/tutorials/driver-dispatch/): push matching offers
+to drivers over webhooks.

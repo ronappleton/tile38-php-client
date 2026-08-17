@@ -1,6 +1,6 @@
 ---
 title: Asset Check-In
-description: "Simple: track equipment check-ins with automatic expiry and TTL."
+description: 'Simple: track equipment check-ins with automatic expiry and TTL.'
 ---
 
 **Level:** Simple
@@ -77,4 +77,5 @@ try {
 - `->persist()` removes an expiry; `->ttl()` reads the remaining time.
 - `->nx()` / `->xx()` make check-out atomic.
 
-**Next:** [Postcode & Geocoding Lookup](/tutorials/postcode-lookup/): resolve coordinates from place keys and back again.
+**Next:** [Postcode & Geocoding Lookup](/tutorials/postcode-lookup/): resolve
+coordinates from place keys and back again.

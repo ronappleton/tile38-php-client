@@ -1,18 +1,20 @@
 ---
 title: IoT Roaming Geofences
-description: "Complex: geofences that follow a moving object, with ROAM and live channels."
+description:
+  'Complex: geofences that follow a moving object, with ROAM and live channels.'
 ---
 
 **Level:** Complex
 
-A tracked pet, a rental car, a delivery drone. You don't just want a fixed zone: you want a **roaming geofence** that moves with the object and reports when anything
-else comes near it.
+A tracked pet, a rental car, a delivery drone. You don't just want a fixed zone:
+you want a **roaming geofence** that moves with the object and reports when
+anything else comes near it.
 
 ## What a roaming geofence is
 
-A normal `NEARBY` geofence is anchored to one point. A **ROAM** geofence is anchored
-to another object: the fence follows that object's current position, and fires when
-other objects come within `meters` of it.
+A normal `NEARBY` geofence is anchored to one point. A **ROAM** geofence is
+anchored to another object: the fence follows that object's current position,
+and fires when other objects come within `meters` of it.
 
 ## Set the anchor
 
@@ -56,7 +58,7 @@ As `car-7` moves, the 100 m fence moves with it. Move the car:
 $client->set('cars', 'car-7', Point::make(51.5100, -0.1320))->execute();
 ```
 
-Now `trackers` objects within 100 m of the *new* position fire events.
+Now `trackers` objects within 100 m of the _new_ position fire events.
 
 ## React to tracker movement
 
@@ -66,8 +68,8 @@ Update a tracker and watch it cross the boundary:
 $client->set('trackers', 'child-a', Point::make(51.5110, -0.1330))->execute();
 ```
 
-If `child-a` just entered the car's 100 m zone, an `enter` event is published on the
-`car-7-zone` channel.
+If `child-a` just entered the car's 100 m zone, an `enter` event is published on
+the `car-7-zone` channel.
 
 ## Webhooks for roaming
 
@@ -89,4 +91,5 @@ $client->sethook(
 - The geofence re-anchors to the object automatically as it moves.
 - Roaming fences work with both channels and webhooks.
 
-**Next:** [Real Estate Search](/tutorials/real-estate/): search property polygons with filters.
+**Next:** [Real Estate Search](/tutorials/real-estate/): search property
+polygons with filters.

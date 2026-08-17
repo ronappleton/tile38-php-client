@@ -1,12 +1,13 @@
 ---
 title: Store Locator
-description: "Simple: find the nearest branch, filtered by opening hours and type."
+description:
+  'Simple: find the nearest branch, filtered by opening hours and type.'
 ---
 
 **Level:** Simple
 
-You have a chain of coffee shops. Visitors pick a location and you show the nearest
-three branches that are open and sell takeaway.
+You have a chain of coffee shops. Visitors pick a location and you show the
+nearest three branches that are open and sell takeaway.
 
 ## Seed the stores
 
@@ -46,8 +47,8 @@ $result = $client->nearby('stores', Point::make(51.5060, -0.1300, 5000))
 ```
 
 > `WHERE` compares against numeric fields, so store `open` as `1`/`0` for range
-> filters. The example above uses string equality: pick one convention and stick to
-> it.
+> filters. The example above uses string equality: pick one convention and stick
+> to it.
 
 A cleaner version treats both fields as numbers:
 
@@ -76,8 +77,10 @@ $result = $client->nearby('stores', Point::make(51.5060, -0.1300, 5000))
 
 ## What you learned
 
-- Combine `nearby` with `where` filters and `limit` for "top N matching" queries.
+- Combine `nearby` with `where` filters and `limit` for "top N matching"
+  queries.
 - Store filterable attributes as numeric fields.
 - `->objects()` returns ready-to-render GeoJSON.
 
-**Next:** [Asset Check-In](/tutorials/asset-checkin/): expiry-based data with `EX` and `TTL`.
+**Next:** [Asset Check-In](/tutorials/asset-checkin/): expiry-based data with
+`EX` and `TTL`.

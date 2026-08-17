@@ -14,10 +14,15 @@ export default defineConfig({
       },
       customCss: ['./src/styles/custom.css'],
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/ronappleton/tile38-php-client' },
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/ronappleton/tile38-php-client',
+        },
       ],
       editLink: {
-        baseUrl: 'https://github.com/ronappleton/tile38-php-client/edit/master/docs/',
+        baseUrl:
+          'https://github.com/ronappleton/tile38-php-client/edit/master/docs/',
       },
       components: {
         Hero: './src/components/Hero.astro',
@@ -46,7 +51,10 @@ export default defineConfig({
           label: 'Reference',
           items: [
             { label: 'Command Reference', link: '/reference/commands/' },
-            { label: 'Version Compatibility', link: '/reference/version-compatibility/' },
+            {
+              label: 'Version Compatibility',
+              link: '/reference/version-compatibility/',
+            },
           ],
         },
         {

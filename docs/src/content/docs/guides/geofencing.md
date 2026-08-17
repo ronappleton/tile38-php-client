@@ -1,11 +1,12 @@
 ---
 title: Geofencing & Channels
-description: Turn any search into a live geofence and publish events to pub/sub channels.
+description:
+  Turn any search into a live geofence and publish events to pub/sub channels.
 ---
 
-A geofence is a search that keeps watching. When an object enters, exits, or crosses
-the search area, Tile38 fires an event. You receive those events over a **pub/sub
-channel**.
+A geofence is a search that keeps watching. When an object enters, exits, or
+crosses the search area, Tile38 fires an event. You receive those events over a
+**pub/sub channel**.
 
 ## Create a channel
 
@@ -20,12 +21,13 @@ $client->setchan('warehouse', SearchType::Nearby, 'fleet', Point::make(51.5, -0.
     ->execute();
 ```
 
-The channel is named `warehouse`, watches the `fleet` collection, and fires whenever
-a fleet object moves within 500 m of the point.
+The channel is named `warehouse`, watches the `fleet` collection, and fires
+whenever a fleet object moves within 500 m of the point.
 
 ## Choose the search type
 
-`NEARBY`, `WITHIN`, and `INTERSECTS` are supported: pass the matching `SearchType`:
+`NEARBY`, `WITHIN`, and `INTERSECTS` are supported: pass the matching
+`SearchType`:
 
 ```php
 use Ronappleton\Tile38PhpClient\Enums\SearchType;
@@ -61,8 +63,8 @@ Re-running `setchan` with the same name overwrites the channel.
 
 ## Subscribe
 
-`SUBSCRIBE` and `PSUBSCRIBE` stream events on a connection. They are long-lived and
-blocking, so they are best used from a dedicated connection:
+`SUBSCRIBE` and `PSUBSCRIBE` stream events on a connection. They are long-lived
+and blocking, so they are best used from a dedicated connection:
 
 ```php
 // A second client, dedicated to listening
@@ -85,4 +87,5 @@ $client->setchan('warehouse', SearchType::Nearby, 'fleet', Point::make(51.5, -0.
 
 ## Tutorial
 
-See [Geofence Alerts](/tutorials/geofence-alerts/) for a complete, runnable example.
+See [Geofence Alerts](/tutorials/geofence-alerts/) for a complete, runnable
+example.

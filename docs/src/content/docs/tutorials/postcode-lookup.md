@@ -1,19 +1,22 @@
 ---
 title: Postcode & Geocoding Lookup
-description: "Simple: store postcodes with their coordinates and resolve them in both directions at microsecond speed."
+description:
+  'Simple: store postcodes with their coordinates and resolve them in both
+  directions at microsecond speed.'
 ---
 
 **Level:** Simple
 
-You need fast postcode → coordinates and coordinates → postcode lookups, at scale.
-Tile38 is an in-memory spatial store, which makes both directions instant.
+You need fast postcode → coordinates and coordinates → postcode lookups, at
+scale. Tile38 is an in-memory spatial store, which makes both directions
+instant.
 
 ## Load a postcode dataset
 
-A postcode is just an id with a point. UK postcodes are published openly
-(e.g. [ONS](https://geoportal.statistics.gov.uk/) / free sources); here is the shape:
+A postcode is just an id with a point. UK postcodes are published openly (e.g.
+[ONS](https://geoportal.statistics.gov.uk/) / free sources); here is the shape:
 
-```
+```text
 SW1A1AA,51.5007,-0.1246
 SW1A2AA,51.5035,-0.1287
 SW1A3AA,51.5060,-0.1300
@@ -46,8 +49,8 @@ $result = $client->get('postcodes', 'SW1A1AA')->point()->execute();
 
 ## Coordinates → postcode
 
-Reverse geocoding is a `NEARBY` search for the nearest match. A tight radius plus
-`limit(1)` finds the closest centroid:
+Reverse geocoding is a `NEARBY` search for the nearest match. A tight radius
+plus `limit(1)` finds the closest centroid:
 
 ```php
 $result = $client->nearby('postcodes', Point::make(51.5012, -0.1252, 1000))
@@ -60,8 +63,8 @@ $result = $client->nearby('postcodes', Point::make(51.5012, -0.1252, 1000))
 
 ## Drop the point once found
 
-For a lookup you usually only care about the nearest id: use `->ids()` and read it
-directly:
+For a lookup you usually only care about the nearest id: use `->ids()` and read
+it directly:
 
 ```php
 $response = json_decode(
@@ -76,7 +79,8 @@ $postcode = $response['ids'][0] ?? null;
 
 ## Handle gaps gracefully
 
-If a coordinate is in open water or un-postcoded land, the search returns nothing:
+If a coordinate is in open water or un-postcoded land, the search returns
+nothing:
 
 ```php
 $response = json_decode(
@@ -116,4 +120,5 @@ $result = $client->within('boundaries', Point::make(51.5012, -0.1252, 0))
 - Coordinates → postcode is a `NEARBY` with a small radius and `limit(1)`.
 - Boundary polygons make lookups exact, at the cost of more data.
 
-**Next:** [Delivery Radius](/tutorials/delivery-radius/): a more complex use of the same primitives.
+**Next:** [Delivery Radius](/tutorials/delivery-radius/): a more complex use of
+the same primitives.

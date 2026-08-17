@@ -18,15 +18,15 @@ new Tile38(
 )
 ```
 
-| Parameter        | Default | Purpose                                          |
-|------------------|---------|--------------------------------------------------|
-| `$host`          |:       | Tile38 server host                               |
-| `$port`          | `9851`  | Tile38 server port                               |
-| `$password`      | `null`  | Runs `AUTH` on connect when set                  |
-| `$timeout`       | `0.0`   | Connection timeout (seconds)                     |
-| `$retryInterval` | `0`     | Retry interval for connecting                    |
-| `$readTimeout`   | `0.0`   | Read timeout (seconds)                           |
-| `$client`        | `null`  | Inject a preconfigured `Redis` client            |
+| Parameter        | Default | Purpose                               |
+| ---------------- | ------- | ------------------------------------- |
+| `$host`          | :       | Tile38 server host                    |
+| `$port`          | `9851`  | Tile38 server port                    |
+| `$password`      | `null`  | Runs `AUTH` on connect when set       |
+| `$timeout`       | `0.0`   | Connection timeout (seconds)          |
+| `$retryInterval` | `0`     | Retry interval for connecting         |
+| `$readTimeout`   | `0.0`   | Read timeout (seconds)                |
+| `$client`        | `null`  | Inject a preconfigured `Redis` client |
 
 ## Examples
 
@@ -46,16 +46,17 @@ By default the client speaks RESP. You can switch the connection to JSON output:
 $client->output('json');
 ```
 
-This changes the **server connection** output mode, so `execute()` responses come back
-as JSON strings. It applies to every command on that connection.
+This changes the **server connection** output mode, so `execute()` responses
+come back as JSON strings. It applies to every command on that connection.
 
 ## Timeouts
 
 Two different things are called "timeout":
 
-1. **Connection timeouts**: set via the constructor (`$timeout`, `$readTimeout`).
-2. **Command timeouts**: Tile38 wraps scan/search/scripting commands with `TIMEOUT
-   seconds`, which aborts a command that runs too long:
+1. **Connection timeouts**: set via the constructor (`$timeout`,
+   `$readTimeout`).
+2. **Command timeouts**: Tile38 wraps scan/search/scripting commands with
+   `TIMEOUT seconds`, which aborts a command that runs too long:
 
 ```php
 $result = $client->scan('fleet')->count()->timeout(0.5)->execute();

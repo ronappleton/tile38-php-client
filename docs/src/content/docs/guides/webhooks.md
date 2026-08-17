@@ -1,11 +1,12 @@
 ---
 title: Webhooks
-description: Push geofence events to HTTP, Redis, Kafka, MQTT, and many other endpoints.
+description:
+  Push geofence events to HTTP, Redis, Kafka, MQTT, and many other endpoints.
 ---
 
-Webhooks are the same as channels, but Tile38 POSTs events to an endpoint instead of
-a pub/sub stream. This is how you integrate location events with the rest of your
-system.
+Webhooks are the same as channels, but Tile38 POSTs events to an endpoint
+instead of a pub/sub stream. This is how you integrate location events with the
+rest of your system.
 
 ## Create a webhook
 
@@ -33,16 +34,16 @@ message to the endpoint.
 
 Tile38 supports many endpoint schemes:
 
-| Scheme      | Example                                          |
-|-------------|--------------------------------------------------|
-| `http`/`https` | `https://api.example.com/hooks/warehouse`     |
-| `redis`     | `redis://10.0.0.5:6379/warehouse`                |
-| `kafka`     | `kafka://10.0.0.5:9092/warehouse`                |
-| `mqtt`      | `mqtt://broker:8443/warehouse?qos=1`             |
-| `amqp`      | `amqp://guest:guest@rabbit:5672/warehouse`       |
-| `nats`      | `nats://127.0.0.1:4222/warehouse`                |
-| `sqs`       | `https://sqs.us-east-1.amazonaws.com/123/myqueue`|
-| `grpc`      | `grpc://10.0.0.5:6798/...`                       |
+| Scheme         | Example                                           |
+| -------------- | ------------------------------------------------- |
+| `http`/`https` | `https://api.example.com/hooks/warehouse`         |
+| `redis`        | `redis://10.0.0.5:6379/warehouse`                 |
+| `kafka`        | `kafka://10.0.0.5:9092/warehouse`                 |
+| `mqtt`         | `mqtt://broker:8443/warehouse?qos=1`              |
+| `amqp`         | `amqp://guest:guest@rabbit:5672/warehouse`        |
+| `nats`         | `nats://127.0.0.1:4222/warehouse`                 |
+| `sqs`          | `https://sqs.us-east-1.amazonaws.com/123/myqueue` |
+| `grpc`         | `grpc://10.0.0.5:6798/...`                        |
 
 Multiple endpoints can be separated by commas for failover:
 
@@ -82,4 +83,5 @@ $client->pdelhook('ware*')->execute();       // delete by pattern
 
 ## Tutorial
 
-See [Realtime Dispatch](/tutorials/driver-dispatch/) for a full webhook-driven example.
+See [Realtime Dispatch](/tutorials/driver-dispatch/) for a full webhook-driven
+example.

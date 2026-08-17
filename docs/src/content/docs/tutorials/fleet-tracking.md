@@ -1,13 +1,15 @@
 ---
 title: Track a Fleet
-description: "A simple walkthrough: store vehicle positions and run nearby queries in realtime."
+description:
+  'A simple walkthrough: store vehicle positions and run nearby queries in
+  realtime.'
 ---
 
 **Level:** Simple
 
-You have a fleet of delivery vehicles reporting their position. You want to store
-every position and answer one question instantly: *which vehicles are near me right
-now?*
+You have a fleet of delivery vehicles reporting their position. You want to
+store every position and answer one question instantly: _which vehicles are near
+me right now?_
 
 ## Set up
 
@@ -82,7 +84,9 @@ function vehiclesNear(Tile38 $client, float $lat, float $lon, float $meters): ar
 ## What you learned
 
 - `SET` with an id overwrites, so the latest report wins.
-- `NEARBY` is a nearest-neighbour search: the third `Point` argument is the radius in meters.
+- `NEARBY` is a nearest-neighbour search: the third `Point` argument is the
+  radius in meters.
 - `->where()` filters results by field values server-side.
 
-**Next:** [Geofence Alerts](/tutorials/geofence-alerts/): stop polling, let Tile38 tell you when things move.
+**Next:** [Geofence Alerts](/tutorials/geofence-alerts/): stop polling, let
+Tile38 tell you when things move.
