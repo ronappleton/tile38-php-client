@@ -8,8 +8,10 @@ use Redis;
 use Ronappleton\Tile38PhpClient\Commands\CommandRegistry;
 use Ronappleton\Tile38PhpClient\Exceptions\CommandDoesNotExist;
 use Ronappleton\Tile38PhpClient\Exceptions\RequiredArgumentCount;
+use Throwable;
 
 use function count;
+use function is_array;
 use function strtolower;
 
 /**
@@ -85,6 +87,33 @@ class Tile38
         }
 
         $this->client->auth($password);
+    }
+
+    /**
+     * Queue fluent client commands in a phpredis pipeline and flush them once.
+     *
+     * @param callable(self): void $callback
+     *
+     * @return array<int, mixed>
+     */
+    public function pipeline(callable $callback): array
+    {
+        $this->client->pipeline();
+
+        try {
+            $callback($this);
+            $results = $this->client->exec();
+        } catch (Throwable $exception) {
+            $this->client->discard();
+
+            throw $exception;
+        }
+
+        if (! is_array($results)) {
+            return [];
+        }
+
+        return $results;
     }
 
     /**

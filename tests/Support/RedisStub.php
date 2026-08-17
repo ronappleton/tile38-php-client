@@ -16,6 +16,12 @@ class RedisStub
 
     public mixed $response = true;
 
+    public int $pipelineCount = 0;
+
+    public int $execCount = 0;
+
+    public int $discardCount = 0;
+
     /**
      * @param array<int, mixed> $arguments
      */
@@ -34,6 +40,30 @@ class RedisStub
         $this->recordedCommands[] = [$command, ... $arguments];
 
         return $this->response;
+    }
+
+    public function pipeline(): self
+    {
+        $this->pipelineCount++;
+
+        return $this;
+    }
+
+    /**
+     * @return array<int, mixed>
+     */
+    public function exec(): array
+    {
+        $this->execCount++;
+
+        return [];
+    }
+
+    public function discard(): bool
+    {
+        $this->discardCount++;
+
+        return true;
     }
 }
 

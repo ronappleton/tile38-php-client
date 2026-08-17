@@ -33,7 +33,18 @@ $client->search('users')
 
 ### NEARBY: nearest to a point
 
-Requires a `Point` (with the radius in meters as the third argument):
+Tile38 orders `NEARBY` results by distance. Use a two-coordinate `Point` with
+`LIMIT` when you want the nearest N objects without a radius:
+
+```php
+$client->nearby('stores', Point::make(51.5074, -0.1278))
+    ->limit(10)
+    ->distance()
+    ->points()
+    ->execute();
+```
+
+Add a third `Point` coordinate to constrain the search to a radius in meters:
 
 ```php
 $client->nearby('fleet', Point::make(51.5074, -0.1278, 5000))
@@ -78,10 +89,25 @@ These builder methods are available on all five commands:
 | `->distance()`               | `DISTANCE`     | NEARBY: include distance in results  |
 | `->buffer(float)`            | `BUFFER`       | WITHIN / INTERSECTS: grow the area   |
 | `->clip()`                   | `CLIP`         | INTERSECTS: clip results to the area |
-| `->clipby(area)`             | `CLIPBY`       | clip to BOUNDS/HASH/TILE/QUADKEY     |
-| `->fence()`                  | `FENCE`        | turn the search into a geofence      |
-| `->detect(string)`           | `DETECT`       | geofence event types                 |
-| `->commands(string)`         | `COMMANDS`     | geofence command mask                |
+
+### Pipelines for bulk loading
+
+Use the client's `pipeline()` helper when loading a large collection. Commands
+are queued through phpredis and flushed in one batch instead of making one
+network round trip per object:
+
+```php
+$client->pipeline(static function (Tile38 $client) use ($stores): void {
+    foreach ($stores as $id => [$lat, $lon]) {
+        $client->set('stores', $id, Point::make($lat, $lon))->execute();
+    }
+});
+```
+
+| `->clipby(area)` | `CLIPBY` | clip to BOUNDS/HASH/TILE/QUADKEY | | `->fence()`
+| `FENCE` | turn the search into a geofence | | `->detect(string)` | `DETECT` |
+geofence event types | | `->commands(string)` | `COMMANDS` | geofence command
+mask |
 
 > **Output formats must come last.** Tile38 parses output formats after the
 > modifiers. The client always emits modifiers first and output formats last, so

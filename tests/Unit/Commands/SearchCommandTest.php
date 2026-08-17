@@ -66,6 +66,24 @@ class SearchCommandTest extends TestCase
         );
     }
 
+    public function testNearbyLimitWithoutRadiusFindsNearestObjects(): void
+    {
+        $redis = new RedisStub();
+
+        $command = new Nearby(
+            $redis,
+            ['stores', Point::make(51.5074, - 0.1278)],
+        );
+        $command->limit(3)->distance()->points();
+
+        $command->execute();
+
+        self::assertSame(
+            [['NEARBY', 'stores', 'LIMIT', '3', 'DISTANCE', 'POINTS', 'POINT', '51.5074', '-0.1278']],
+            $redis->recordedCommands,
+        );
+    }
+
     public function testWithinWithBoundsArea(): void
     {
         $redis = new RedisStub();

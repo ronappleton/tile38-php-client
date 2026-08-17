@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ronappleton\Tile38PhpClient\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
+use Ronappleton\Tile38PhpClient\Clients\Tile38;
 use Ronappleton\Tile38PhpClient\Commands\Objects\Bounds;
 use Ronappleton\Tile38PhpClient\Commands\Objects\Circle;
 use Ronappleton\Tile38PhpClient\Commands\Objects\Point;
@@ -73,6 +74,40 @@ class SearchTest extends IntegrationTestCase
 
         TestCase::assertSame(2, $response['count'] ?? null);
         TestCase::assertArrayHasKey('points', $response);
+    }
+
+    public function testNearbyWithoutRadiusUsesNearestLimit(): void
+    {
+        $key = $this->uniqueKey();
+
+        $this->client()->set($key, 'store1', Point::make(51.5074, - 0.1278))->execute();
+        $this->client()->set($key, 'store2', Point::make(51.5174, - 0.1278))->execute();
+
+        $response = $this->jsonResponse(
+            $this->client()
+                ->nearby($key, Point::make(51.5074, - 0.1278))
+                ->limit(1)
+                ->ids()
+                ->execute(),
+        );
+
+        TestCase::assertSame(['store1'], $response['ids'] ?? null);
+    }
+
+    public function testPipelineCanSeedMultipleObjects(): void
+    {
+        $key = $this->uniqueKey();
+
+        $results = $this->client()->pipeline(static function (Tile38 $client) use ($key): void {
+            $client->set($key, 'store1', Point::make(51.5074, - 0.1278))->execute();
+            $client->set($key, 'store2', Point::make(51.5174, - 0.1278))->execute();
+        });
+
+        TestCase::assertCount(2, $results);
+
+        $response = $this->jsonResponse($this->client()->scan($key)->ids()->execute());
+
+        TestCase::assertCount(2, $response['ids'] ?? []);
     }
 
     public function testWithin(): void
